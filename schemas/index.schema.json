@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/ImLogueybear/PocketAppsTCG/main/schemas/index.schema.json",
+  "title": "PocketAppsTCG app catalog",
+  "type": "object",
+  "required": ["schemaVersion", "apps", "sharedData"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "updatedAt": { "type": "string" },
+    "apps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "manifest"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "manifest": { "type": "string" },
+          "versions": { "type": "string" },
+          "license": { "type": "string" }
+        }
+      }
+    },
+    "sharedData": {
+      "type": "object",
+      "required": ["id", "name", "manifest"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "manifest": { "type": "string" },
+        "updates": { "type": "string" },
+        "license": { "type": "string" }
+      }
+    },
+    "licensing": { "type": "object" },
+    "policy": { "type": "string" }
+  }
+}

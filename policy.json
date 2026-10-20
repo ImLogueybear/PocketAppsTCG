@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-20T20:00:00Z",
+  "licensing": {
+    "status": "pending",
+    "enforcement": "advisory",
+    "license": "All rights reserved",
+    "document": "licensing/README.md",
+    "summary": "Licensing terms have not been finalized. Applications must surface the status but must not block core features while enforcement is advisory."
+  },
+  "dataSources": {
+    "pkmndb": {
+      "repo": "ImLogueybear/PKMNDB",
+      "rawBase": "https://raw.githubusercontent.com/ImLogueybear/PKMNDB/main/dist",
+      "imageBase": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev",
+      "sets": "sets.json",
+      "cards": "cards.jsonl",
+      "set": "sets/{setId}.json",
+      "artIssues": "art_issues.json",
+      "scanIndex": "scan-index.json"
+    }
+  },
+  "pricing": {
+    "currency": "USD",
+    "raw": {
+      "primary": "tcgplayer",
+      "providers": ["tcgplayer", "pricecharting"],
+      "reference": ["pricecharting"],
+      "notes": "TCGplayer is the primary raw-card market. PriceCharting loose-price is shown as a second reference when configured."
+    },
+    "graded": {
+      "primary": "ebay-sold",
+      "providers": ["ebay", "soldcomps", "pricecharting"],
+      "reference": ["pricecharting"],
+      "notes": "Use eBay sold comps first, eBay active listings as a fallback, SoldComps for realized sales, and PriceCharting as a reference."
+    }
+  },
+  "ai": {
+    "provider": "deepseek",
+    "baseUrl": "https://api.deepseek.com",
+    "model": "deepseek-flash",
+    "purpose": "scan-identification",
+    "fallbackOnly": true,
+    "notes": "DeepSeek is consulted only when the on-device matcher/OCR result is below the app's confidence threshold."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "pocketappstcg",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Shared public version, licensing and provider policy for the PocketApps TCG family",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate.mjs"
+  }
+}

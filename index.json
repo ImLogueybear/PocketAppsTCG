@@ -1,23 +1,35 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-20T17:11:09Z",
+  "updatedAt": "2026-10-20T20:00:00Z",
   "apps": [
     {
       "id": "pocketvaulttcg",
       "name": "PocketVaultTCG",
       "manifest": "pocketvaulttcg/updates.json",
-      "versions": "pocketvaulttcg/versions/"
+      "versions": "pocketvaulttcg/versions/",
+      "license": "licensing/pocketvaulttcg.json"
     },
     {
       "id": "pocketvendortcg",
       "name": "PocketVendorTCG",
       "manifest": "pocketvendortcg/updates.json",
-      "versions": "pocketvendortcg/versions/"
+      "versions": "pocketvendortcg/versions/",
+      "license": "licensing/pocketvendortcg.json"
     }
   ],
   "sharedData": {
     "id": "pkmndb",
     "name": "PKMNDB",
-    "manifest": "pkmndb/manifest.json"
-  }
+    "manifest": "pkmndb/manifest.json",
+    "updates": "pkmndb/updates.json",
+    "license": "licensing/pkmndb.json"
+  },
+  "licensing": {
+    "status": "pending",
+    "enforcement": "advisory",
+    "license": "All rights reserved",
+    "document": "licensing/README.md",
+    "summary": "Licensing terms have not been finalized. Applications must surface the status but must not block core features while enforcement is advisory."
+  },
+  "policy": "policy.json"
 }

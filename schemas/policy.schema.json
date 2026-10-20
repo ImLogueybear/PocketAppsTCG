@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/ImLogueybear/PocketAppsTCG/main/schemas/policy.schema.json",
+  "title": "PocketAppsTCG shared provider policy",
+  "type": "object",
+  "required": ["schemaVersion", "licensing", "dataSources", "pricing", "ai"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "updatedAt": { "type": "string" },
+    "licensing": {
+      "type": "object",
+      "required": ["status", "enforcement", "license", "document"],
+      "properties": {
+        "status": { "type": "string" },
+        "enforcement": { "enum": ["advisory", "required", "blocking"] },
+        "license": { "type": "string" },
+        "document": { "type": "string" },
+        "summary": { "type": "string" }
+      }
+    },
+    "dataSources": {
+      "type": "object",
+      "required": ["pkmndb"],
+      "properties": {
+        "pkmndb": {
+          "type": "object",
+          "required": ["repo", "rawBase", "imageBase", "sets", "cards", "set"],
+          "properties": {
+            "repo": { "type": "string" },
+            "rawBase": { "type": "string" },
+            "imageBase": { "type": "string" },
+            "sets": { "type": "string" },
+            "cards": { "type": "string" },
+            "set": { "type": "string" },
+            "artIssues": { "type": "string" },
+            "scanIndex": { "type": "string" }
+          }
+        }
+      }
+    },
+    "pricing": {
+      "type": "object",
+      "required": ["currency", "raw", "graded"],
+      "properties": {
+        "currency": { "type": "string" },
+        "raw": {
+          "type": "object",
+          "required": ["primary", "providers"],
+          "properties": {
+            "primary": { "type": "string" },
+            "providers": { "type": "array", "items": { "type": "string" } },
+            "reference": { "type": "array", "items": { "type": "string" } },
+            "notes": { "type": "string" }
+          }
+        },
+        "graded": {
+          "type": "object",
+          "required": ["primary", "providers"],
+          "properties": {
+            "primary": { "type": "string" },
+            "providers": { "type": "array", "items": { "type": "string" } },
+            "reference": { "type": "array", "items": { "type": "string" } },
+            "notes": { "type": "string" }
+          }
+        }
+      }
+    },
+    "ai": {
+      "type": "object",
+      "required": ["provider", "baseUrl", "model", "fallbackOnly"],
+      "properties": {
+        "provider": { "const": "deepseek" },
+        "baseUrl": { "type": "string" },
+        "model": { "type": "string" },
+        "purpose": { "type": "string" },
+        "fallbackOnly": { "type": "boolean" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

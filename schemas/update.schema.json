@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/ImLogueybear/PocketAppsTCG/main/schemas/update.schema.json",
+  "title": "PocketAppsTCG update document",
+  "type": "object",
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "appId": { "type": "string" },
+    "version": { "type": ["string", "null"] },
+    "build": { "type": "integer", "minimum": 0 },
+    "tag": { "type": ["string", "null"] },
+    "url": { "type": ["string", "null"] },
+    "notes": { "type": ["string", "null"] },
+    "publishedAt": { "type": ["string", "null"] }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/ImLogueybear/PocketAppsTCG/main/schemas/license.schema.json",
+  "title": "PocketAppsTCG license document",
+  "type": "object",
+  "required": ["schemaVersion", "appId", "status", "enforcement", "license", "entitlements"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "appId": { "type": "string" },
+    "status": { "enum": ["active", "pending", "expired", "revoked", "trial"] },
+    "enforcement": { "enum": ["advisory", "required", "blocking"] },
+    "license": { "type": "string" },
+    "holder": { "type": "string" },
+    "entitlements": { "type": "array", "items": { "type": "string" } },
+    "flags": { "type": "array", "items": { "type": "string" } },
+    "document": { "type": "string" },
+    "summary": { "type": "string" },
+    "expiresAt": { "type": "string" },
+    "graceUntil": { "type": "string" },
+    "updatedAt": { "type": "string" }
+  }
+}

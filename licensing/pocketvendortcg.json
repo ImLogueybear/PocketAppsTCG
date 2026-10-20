@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "appId": "pocketvendortcg",
+  "status": "pending",
+  "enforcement": "advisory",
+  "license": "All rights reserved",
+  "holder": "ImLogueybear",
+  "entitlements": [],
+  "flags": [],
+  "document": "licensing/README.md",
+  "summary": "Licensing terms have not been finalized. This document is advisory and must not block core features.",
+  "updatedAt": "2026-10-20T20:00:00Z"
+}
