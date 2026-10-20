@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-10-20T17:11:09Z",
+  "apps": [
+    {
+      "id": "pocketvaulttcg",
+      "name": "PocketVaultTCG",
+      "manifest": "pocketvaulttcg/updates.json",
+      "versions": "pocketvaulttcg/versions/"
+    },
+    {
+      "id": "pocketvendortcg",
+      "name": "PocketVendorTCG",
+      "manifest": "pocketvendortcg/updates.json",
+      "versions": "pocketvendortcg/versions/"
+    }
+  ],
+  "sharedData": {
+    "id": "pkmndb",
+    "name": "PKMNDB",
+    "manifest": "pkmndb/manifest.json"
+  }
+}

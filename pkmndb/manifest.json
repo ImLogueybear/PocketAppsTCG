@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "name": "PKMNDB",
+  "repository": "https://github.com/ImLogueybear/PKMNDB",
+  "branch": "main",
+  "manifest": "https://raw.githubusercontent.com/ImLogueybear/PKMNDB/main/dist/manifest.json",
+  "database": "https://raw.githubusercontent.com/ImLogueybear/PKMNDB/main/data/pkmndb.sqlite3",
+  "distBaseUrl": "https://raw.githubusercontent.com/ImLogueybear/PKMNDB/main/dist/",
+  "imageBaseUrl": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev",
+  "scanIndexes": {
+    "default": "https://raw.githubusercontent.com/ImLogueybear/PKMNDB/main/dist/scan-index.json",
+    "pocketVault": "https://raw.githubusercontent.com/ImLogueybear/PKMNDB/main/dist/scan-index-pocketvault.json"
+  }
+}
