@@ -1,8 +1,1 @@
-{
-  "version": "0.29.2",
-  "build": 77,
-  "tag": "v0.29.2",
-  "url": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.29.2",
-  "notes": "### Changed\n- **Update manifests now live in `ImLogueybear/PocketAppsTCG` under\n  `pocketvaulttcg/`.** The app polls\n  `pocketvaulttcg/updates.json` on `main`, and releases publish an immutable\n  `versions/<tag>.json` snapshot there. Installers that still poll the old\n  `PKMNDB/app-data/updates.json` get the same manifest mirrored for the\n  transition.\n- The manifest now carries the Android `build` (versionCode); the checker\n  compares it first and falls back to semver `version`.\n\nNo scan-index rebuild required (no descriptor or card-data change).\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from c3cc2c71c9c9a0a009a8b3a56b2795ceba178035.",
-  "publishedAt": "2026-10-20T17:40:19.617Z"
-}
+{"version":"0.29.3","build":78,"tag":"v0.29.3","notes":"### Added\n- PriceCharting reference pricing (loose/graded) beside the TCGplayer market.\n- Graded comps from eBay sold/active and SoldComps, with a PriceCharting graded reference.\n- Advisory license status from PocketAppsTCG.\n\nNo scan-index rebuild required.\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.","url":"https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.29.3","publishedAt":"2026-10-21T00:05:05Z"}
