@@ -15,6 +15,13 @@
       "manifest": "pocketvendortcg/updates.json",
       "versions": "pocketvendortcg/versions/",
       "license": "licensing/pocketvendortcg.json"
+    },
+    {
+      "id": "pocketscantcg",
+      "name": "PocketScanTCG",
+      "manifest": "pocketscantcg/updates.json",
+      "versions": "pocketscantcg/versions/",
+      "license": "licensing/pocketscantcg.json"
     }
   ],
   "sharedData": {

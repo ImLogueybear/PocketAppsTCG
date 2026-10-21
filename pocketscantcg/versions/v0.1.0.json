@@ -1,0 +1,8 @@
+{
+  "version": "0.1.0",
+  "build": 1,
+  "tag": "v0.1.0",
+  "url": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.1.0",
+  "notes": "Initial debug build of PocketScanTCG. Raw-card screening, graded-slab cert checks, offline PKMNDB catalogue, local evidence export. Raw-card automated readings are experimental until the physical calibration study is complete.",
+  "publishedAt": "2026-10-21T00:00:00Z"
+}
