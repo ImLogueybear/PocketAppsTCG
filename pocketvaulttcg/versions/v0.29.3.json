@@ -1,0 +1,8 @@
+{
+  "version": "0.29.3",
+  "build": 78,
+  "tag": "v0.29.3",
+  "notes": "### Added\n- PriceCharting reference pricing (loose/graded) beside the TCGplayer market.\n- Graded comps from eBay sold/active and SoldComps, with a PriceCharting graded reference.\n- Advisory license status from PocketAppsTCG.\n\nNo scan-index rebuild required.\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.",
+  "url": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.29.3",
+  "publishedAt": "2026-10-21T00:05:05Z"
+}
