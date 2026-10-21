@@ -1,0 +1,8 @@
+{
+  "version": "0.1.1",
+  "build": 2,
+  "tag": "v0.1.1",
+  "url": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.1.1",
+  "notes": "Fixes status-bar overlap on the top bar and bottom-nav icon colour after a back gesture. Adds edge-to-edge insets to the native capture and barcode screens, improves collector-number/set-code search, and fixes the camera exposure slider. Raw-card automated readings remain experimental until the physical calibration study is complete.",
+  "publishedAt": "2026-10-21T00:00:00Z"
+}
