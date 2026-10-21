@@ -3,6 +3,6 @@
   "build": 78,
   "tag": "v0.29.3",
   "url": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.29.3",
-  "notes": "### Added\r\n- **PriceCharting reference pricing.** A PriceCharting token in Settings adds\r\n  the loose (raw) and graded reference beside the TCGplayer market; it is a\r\n  second opinion and never replaces the TCGplayer price.\r\n- **Graded comps.** Slab cards can fetch eBay sold/active listings and\r\n  SoldComps, with the PriceCharting graded price as a reference. Credentials\r\n  live in Settings and only graded slabs are queried.\r\n- **License status.** Settings reads the advisory license document from\r\n  `ImLogueybear/PocketAppsTCG`; updates already use that catalog.\r\n\r\nNo scan-index rebuild required (no descriptor or card-data change).\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from 4ff28250803d8ff395efa914b3d4f77f407d6d42.",
-  "publishedAt": "2026-10-21T01:55:24.032Z"
+  "notes": "Local manifest publisher test for v0.29.3.",
+  "publishedAt": "2026-10-21T02:22:48.047Z"
 }
