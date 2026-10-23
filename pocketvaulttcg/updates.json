@@ -1,8 +1,8 @@
 {
-  "version": "0.29.3",
-  "build": 78,
-  "tag": "v0.29.3",
-  "url": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.29.3",
-  "notes": "### Added\r\n- **PriceCharting reference pricing.** A PriceCharting token in Settings adds\r\n  the loose (raw) and graded reference beside the TCGplayer market; it is a\r\n  second opinion and never replaces the TCGplayer price.\r\n- **Graded comps.** Slab cards can fetch eBay sold/active listings and\r\n  SoldComps, with the PriceCharting graded price as a reference. Credentials\r\n  live in Settings and only graded slabs are queried.\r\n- **License status.** Settings reads the advisory license document from\r\n  `ImLogueybear/PocketAppsTCG`; updates already use that catalog.\r\n\r\nNo scan-index rebuild required (no descriptor or card-data change).\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from 4ff28250803d8ff395efa914b3d4f77f407d6d42.",
-  "publishedAt": "2026-10-21T02:22:55.538Z"
+  "version": "0.30.0",
+  "build": 79,
+  "tag": "v0.30.0",
+  "url": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.30.0",
+  "notes": "### Added\r\n- **Simplified Chinese catalogue.** 143 sets / 12,955 cards merged from PKMNDB\r\n  into `src/data/cards.zh.json` + `src/data/zhSets.ts` via\r\n  `npm run sync-pkmndb-zh`, with `zh-pkmndb-*` ids and English names. The app\r\n  seeds them alongside English and Japanese, search and collection include\r\n  them, and the set list/search/card picker show a gold **CN** badge. Set\r\n  series are grouped separately from the English/Japanese catalogues.\r\n- The local scan-index builder now fingerprints `cards.zh.json` too.\r\n- The missing-card audit reports Chinese set/card coverage and artwork gaps.\r\n\r\n### Changed\r\n- `DATA_VERSION` bumps so existing installs reseed with the Chinese cards.\r\n- Chinese cards have no automatic USD pricing; use manual values or eBay comps.\r\n  Price refresh, TCGdex and PriceCharting skip them.\r\n- 59 cards in `Happy Set: Trainer's Pokémon` have no source artwork and are\r\n  bundled without an image URL.\r\n\r\nA published `scan/pocketvault` index rebuild is required to include Chinese\r\ncards in shared-index scanning; the app's local builder already supports them.\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from c16ec5a45cd75cd656365964b9ae9e81ddab0a51.",
+  "publishedAt": "2026-10-23T05:12:03.545Z"
 }
