@@ -1,0 +1,8 @@
+{
+  "version": "0.31.1",
+  "build": 81,
+  "tag": "v0.31.1",
+  "url": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.31.1",
+  "notes": "### Added\n- **Advanced Settings toggle:** Added an \"Advanced Settings\" switch and collapsible container to the Settings page, decluttering the view for everyday collectors while grouping all developer and API integrations (custom PkmnPrices key, PriceCharting token, eBay Client ID/Secret, SoldComps key/budget, DeepSeek API key, and scan capture diagnostics).\n\n### Changed\n- **Snappier navigation & instant rendering:** Live query hooks (`useSets`, `useCollectionMap`, `useCollectionStats`, `useCollectionValue`, `useWishlistSet`, `useWishlistCards`) now cache previous results in memory and return them on initial frame, eliminating loading skeleton flashes when switching tabs or reopening sets.\n- **Search performance:** The Search tab avoids reading the 70k catalogue into memory on mount when inactive; scoped queries now fetch only relevant owned or wanted cards, and full searches use a cached catalogue promise.\n- **Card grid & image caching:** Individual card tiles in `CardGrid` are memoized to avoid re-rendering whole sets during selection. `FadeImg` caches loaded image URLs to display previously viewed cards immediately without replaying fade-in animations.\n- **Touch responsiveness:** Added `touch-action: manipulation` across interactive controls to eliminate the 300ms mobile tap delay, and tightened route and card tile entrance animation durations.\n\nNo scan-index rebuild is required.\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from 333b4b4ec32cb98198894f45234f2452711dc221.",
+  "publishedAt": "2026-10-24T02:03:43.565Z"
+}
