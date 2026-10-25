@@ -1,8 +1,8 @@
 {
-  "version": "0.31.1",
-  "build": 81,
-  "tag": "v0.31.1",
-  "url": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.31.1",
-  "notes": "### Added\n- **Advanced Settings toggle:** Added an \"Advanced Settings\" switch and collapsible container to the Settings page, decluttering the view for everyday collectors while grouping all developer and API integrations (custom PkmnPrices key, PriceCharting token, eBay Client ID/Secret, SoldComps key/budget, DeepSeek API key, and scan capture diagnostics).\n\n### Changed\n- **Snappier navigation & instant rendering:** Live query hooks (`useSets`, `useCollectionMap`, `useCollectionStats`, `useCollectionValue`, `useWishlistSet`, `useWishlistCards`) now cache previous results in memory and return them on initial frame, eliminating loading skeleton flashes when switching tabs or reopening sets.\n- **Search performance:** The Search tab avoids reading the 70k catalogue into memory on mount when inactive; scoped queries now fetch only relevant owned or wanted cards, and full searches use a cached catalogue promise.\n- **Card grid & image caching:** Individual card tiles in `CardGrid` are memoized to avoid re-rendering whole sets during selection. `FadeImg` caches loaded image URLs to display previously viewed cards immediately without replaying fade-in animations.\n- **Touch responsiveness:** Added `touch-action: manipulation` across interactive controls to eliminate the 300ms mobile tap delay, and tightened route and card tile entrance animation durations.\n\nNo scan-index rebuild is required.\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from 333b4b4ec32cb98198894f45234f2452711dc221.",
-  "publishedAt": "2026-10-24T02:03:43.565Z"
+  "version": "0.31.2",
+  "build": 82,
+  "tag": "v0.31.2",
+  "url": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.31.2",
+  "notes": "### Fixed\r\n- **Scan captures crop to the guide.** The capture margin is now 5% per side\r\n  (`SCAN_FRAME_MARGIN` 0.12 → 0.05), so the saved JPEG is the guide plus a small\r\n  invisible tolerance instead of ~97% of the screen width. The guide is fitted\r\n  to short/landscape viewports (78% width remains the portrait cap), and the\r\n  matcher's guide prior uses the same margin.\r\n- A capture whose guide crop cannot be measured now aborts with a transient\r\n  \"Could not frame the camera\" warning instead of silently saving the full\r\n  frame, and a rotated ImageCapture still falls back to the preview-frame crop.\r\n\r\nNo scan-index rebuild required (the descriptor and `SCAN_VERSION` are unchanged;\r\nthe margin is not part of the index format).\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from 37f6fbd01c89e9d831c16519ea9cdcfdd9287dc3.",
+  "publishedAt": "2026-10-25T03:58:22.735Z"
 }
