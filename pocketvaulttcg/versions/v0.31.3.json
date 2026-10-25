@@ -1,0 +1,8 @@
+{
+  "version": "0.31.3",
+  "build": 83,
+  "tag": "v0.31.3",
+  "url": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.31.3",
+  "notes": "### Added\r\n- **Press-and-hold multi-select in sets.** Holding a card in a set enters select\r\n  mode with that card chosen; the existing Select button and bulk add/remove\r\n  actions are unchanged.\r\n\r\nNo scan-index rebuild required (UI-only change).\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from eb1a2ea3121dcf02cfae5b8e93eed77ef254106a.",
+  "publishedAt": "2026-10-25T04:10:52.252Z"
+}
