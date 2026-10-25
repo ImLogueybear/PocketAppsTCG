@@ -1,8 +1,8 @@
 {
-  "version": "0.1.1",
-  "build": 2,
-  "tag": "v0.1.1",
-  "url": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.1.1",
-  "notes": "Fixes status-bar overlap on the top bar and bottom-nav icon colour after a back gesture. Adds edge-to-edge insets to the native capture and barcode screens, improves collector-number/set-code search, and fixes the camera exposure slider. Raw-card automated readings remain experimental until the physical calibration study is complete.",
-  "publishedAt": "2026-10-21T00:00:00Z"
+  "version": "0.2.0",
+  "build": 3,
+  "tag": "v0.2.0",
+  "url": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.2.0",
+  "notes": "Adds a calibration-lab contribution export panel that packages rosette, light, and edge captures into an intake-ready ZIP for local sharing. Rewrites rosette analysis to detrend illumination, detect screen pitch by autocorrelation, and return inconclusive when the capture is too smooth to assess. Raw-card automated readings remain experimental until the physical calibration study is complete.",
+  "publishedAt": "2026-10-25T00:00:00Z"
 }
