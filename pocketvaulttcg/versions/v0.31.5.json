@@ -1,0 +1,8 @@
+{
+  "version": "0.31.5",
+  "build": 85,
+  "tag": "v0.31.5",
+  "url": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.31.5",
+  "notes": "### Changed\r\n- **Leaner set detail:** removed the per-rarity owned/total chips and added\r\n  breathing room between the search/sort row and the card grid.\r\n- **Chinese badges:** CN language badges now use the app's gold accent (JP stays\r\n  red), and Chinese cards show the badge in wishlist and scan results too.\r\n\r\nNo scan-index rebuild required (UI-only change).\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from 4dd7f19ff41c2e7acedbd1bbfa800748e55ac7d9.",
+  "publishedAt": "2026-10-25T13:45:05.130Z"
+}
