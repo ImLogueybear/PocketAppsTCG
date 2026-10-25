@@ -1,0 +1,8 @@
+{
+  "version": "0.31.2",
+  "build": 82,
+  "tag": "v0.31.2",
+  "url": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.31.2",
+  "notes": "### Fixed\r\n- **Scan captures crop to the guide.** The capture margin is now 5% per side\r\n  (`SCAN_FRAME_MARGIN` 0.12 → 0.05), so the saved JPEG is the guide plus a small\r\n  invisible tolerance instead of ~97% of the screen width. The guide is fitted\r\n  to short/landscape viewports (78% width remains the portrait cap), and the\r\n  matcher's guide prior uses the same margin.\r\n- A capture whose guide crop cannot be measured now aborts with a transient\r\n  \"Could not frame the camera\" warning instead of silently saving the full\r\n  frame, and a rotated ImageCapture still falls back to the preview-frame crop.\r\n\r\nNo scan-index rebuild required (the descriptor and `SCAN_VERSION` are unchanged;\r\nthe margin is not part of the index format).\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from 37f6fbd01c89e9d831c16519ea9cdcfdd9287dc3.",
+  "publishedAt": "2026-10-25T03:58:22.735Z"
+}
