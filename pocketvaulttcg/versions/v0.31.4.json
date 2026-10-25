@@ -1,0 +1,8 @@
+{
+  "version": "0.31.4",
+  "build": 84,
+  "tag": "v0.31.4",
+  "url": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.31.4",
+  "notes": "### Fixed\r\n- **Corrected Team Rocket set ids.** The bundled catalogue now matches PKMNDB's\r\n  corrected canonical export: EX Team Rocket Returns is `ex7` (111 cards) and\r\n  Team Rocket is `base5` (83 cards). `pkmndb-115` is retired.\r\n- **Data migration:** Dexie v13 remaps collections, wishlists, prices, grades,\r\n  and saved scans from the 2026-10-23 v12 ids. Installs upgrading straight from\r\n  v11 keep their pre-canonical ids, which already match the corrected catalogue.\r\n- **Scan index alignment:** `scan/canonical` was rebuilt with the corrected ids,\r\n  so scanning these sets resolves once this build is installed.\r\n\r\nNo descriptor change (`SCAN_VERSION` stays 5); the index was republished because\r\nthe card data changed, not the descriptor.\r\n\r\n**Migration note:** where the 0.31.x v12 migration already merged Team Rocket and\r\nEX Team Rocket Returns entries under `base5`, the original set cannot be\r\nrecovered; v13 treats those entries as EX Team Rocket Returns.\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from bf3b2ec0d0ab4b0a0588ef96e297f289a19e167e.",
+  "publishedAt": "2026-10-25T05:13:29.707Z"
+}
