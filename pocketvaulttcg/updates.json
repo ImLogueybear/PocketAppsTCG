@@ -1,8 +1,8 @@
 {
-  "version": "0.31.5",
-  "build": 85,
-  "tag": "v0.31.5",
-  "url": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.31.5",
-  "notes": "### Changed\r\n- **Leaner set detail:** removed the per-rarity owned/total chips and added\r\n  breathing room between the search/sort row and the card grid.\r\n- **Chinese badges:** CN language badges now use the app's gold accent (JP stays\r\n  red), and Chinese cards show the badge in wishlist and scan results too.\r\n\r\nNo scan-index rebuild required (UI-only change).\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from 4dd7f19ff41c2e7acedbd1bbfa800748e55ac7d9.",
-  "publishedAt": "2026-10-25T13:45:05.130Z"
+  "version": "0.31.6",
+  "build": 86,
+  "tag": "v0.31.6",
+  "url": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.31.6",
+  "notes": "### Changed\r\n- **Startup:** catalogue and legacy migration JSON now load on demand;\r\n  maintenance, scan-index warmup, fingerprint counting, and update checks run\r\n  in idle time. Update checks are throttled to once per 12 hours, and scan\r\n  warmup is skipped when scanning is off.\r\n- **Web install size:** English, Japanese, and Chinese catalogues are separate\r\n  chunks; catalogue and migration chunks are runtime-cached instead of\r\n  precached. PWA precache drops from ~20.7 MB to ~1.1 MB; the first seed still\r\n  fetches the catalogue chunks.\r\n- **Search:** one normalized search index is built per session and prewarmed\r\n  for returning search users, instead of re-normalizing every card on each\r\n  keystroke. The card picker and AI lookup reuse it.\r\n- **Collection UI:** price refresh counts on mount and loads cards only when\r\n  run; the picker loads only after a query; a duplicate stats query and dead\r\n  hook were removed; card grids use stable callbacks, `content-visibility`, and\r\n  async image decoding.\r\n- **Seeding:** removed a second in-memory copy of all 69,898 cards.\r\n\r\nNo scan-index rebuild required (no descriptor or card-data change).\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from 454aab35f620c3f582908e78eaf9ecbe774739fa.",
+  "publishedAt": "2026-10-26T01:12:46.369Z"
 }
