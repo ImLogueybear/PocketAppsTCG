@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "appId": "pocketvaulttcg",
+  "version": "0.33.0",
+  "build": 88,
+  "tag": "v0.33.0",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvaulttcg/v0.33.0/PocketVaultTCG-0.33.0-debug.apk",
+  "sha256": "b6a4750d1373765c4da2f2a0c4536a27fb2030c477111df0d2bd3d40dc9c25b0",
+  "size": 8219431,
+  "notes": "Fixes in-app updates: the Update button now opens the download in the system browser (the WebView ignored window.open), and the update feed points at a public APK instead of a private release page.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.33.0",
+  "publishedAt": "2026-10-29T04:03:46.377Z"
+}

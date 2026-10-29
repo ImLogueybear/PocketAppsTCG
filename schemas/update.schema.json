@@ -9,7 +9,24 @@
     "version": { "type": ["string", "null"] },
     "build": { "type": "integer", "minimum": 0 },
     "tag": { "type": ["string", "null"] },
-    "url": { "type": ["string", "null"] },
+    "url": {
+      "type": ["string", "null"],
+      "description": "Direct, anonymously downloadable artifact URL (the APK). Clients open this to update."
+    },
+    "releaseUrl": {
+      "type": ["string", "null"],
+      "description": "Optional human-readable release/changelog page. May require repository access."
+    },
+    "sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "SHA-256 of the artifact at `url`, lowercase hex."
+    },
+    "size": {
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "description": "Exact byte length of the artifact at `url`."
+    },
     "notes": { "type": ["string", "null"] },
     "publishedAt": { "type": ["string", "null"] }
   }

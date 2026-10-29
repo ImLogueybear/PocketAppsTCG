@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Release automation publishes manifests; re-verify the downloads daily so a
+  # deleted/expired artifact is caught even when nobody pushes.
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -15,5 +20,15 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 24
-      - run: node scripts/validate.mjs
+          node-version: 22
+
+      # Shape-only validation let a manifest ship that advertised a private
+      # repository's release page: valid JSON, dead download. The default run
+      # now also proves every advertised artifact is anonymously downloadable
+      # and matches its sha256.
+      - name: Validate manifests and download reachability
+        run: node scripts/validate.mjs
+
+      - name: Validate manifest shape only (no network)
+        if: always()
+        run: node scripts/validate.mjs --offline

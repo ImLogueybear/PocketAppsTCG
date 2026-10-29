@@ -1,8 +1,13 @@
 {
+  "schemaVersion": 1,
+  "appId": "pocketscantcg",
   "version": "0.2.0",
   "build": 3,
   "tag": "v0.2.0",
-  "url": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.2.0",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketscantcg/v0.2.0/PocketScanTCG-0.2.0-debug.apk",
+  "sha256": "49c2b772d893e3c3e7a33c098820aaeb8a10c47e3d97b2f33fa45cedf81e64f0",
+  "size": 71488533,
   "notes": "Adds a calibration-lab contribution export panel that packages rosette, light, and edge captures into an intake-ready ZIP for local sharing. Rewrites rosette analysis to detrend illumination, detect screen pitch by autocorrelation, and return inconclusive when the capture is too smooth to assess. Raw-card automated readings remain experimental until the physical calibration study is complete.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.2.0",
   "publishedAt": "2026-10-25T00:00:00Z"
 }

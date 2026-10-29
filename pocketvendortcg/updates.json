@@ -1,1 +1,13 @@
-{"notes":"Debug build of the PocketVendorTCG Android app (debug-signed). Sideload for testing.","url":"https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.12.3","publishedAt":"2026-10-29T03:01:13Z","build":66,"version":"0.12.3","tag":"v0.12.3"}
+{
+  "schemaVersion": 1,
+  "appId": "pocketvendortcg",
+  "version": "0.12.4",
+  "build": 67,
+  "tag": "v0.12.4",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.12.4/pocketvendortcg-debug.apk",
+  "sha256": "1b033664ca9d1cd76085780ba267509264275495ae0fec7aeaeadca0916f3eaa",
+  "size": 5111036,
+  "notes": "Fixes in-app updates: the update feed now links a public APK download instead of a private release page, and the release page is only used for the changelog.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.12.4",
+  "publishedAt": "2026-10-29T04:06:26.481Z"
+}
