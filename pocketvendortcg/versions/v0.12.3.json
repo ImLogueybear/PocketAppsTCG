@@ -1,0 +1,8 @@
+{
+  "version": "0.12.3",
+  "build": 66,
+  "tag": "v0.12.3",
+  "notes": "Debug build of the PocketVendorTCG Android app (debug-signed). Sideload for testing.",
+  "url": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.12.3",
+  "publishedAt": "2026-10-29T03:01:13Z"
+}
