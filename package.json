@@ -8,6 +8,8 @@
     "validate": "node scripts/validate.mjs",
     "validate:offline": "node scripts/validate.mjs --offline",
     "validate:head": "node scripts/validate.mjs --no-download",
-    "publish:release": "node scripts/publish-release.mjs"
+    "publish:release": "node scripts/publish-release.mjs",
+    "selftest": "node scripts/selftest.mjs",
+    "selftest:network": "node scripts/selftest.mjs --network"
   }
 }

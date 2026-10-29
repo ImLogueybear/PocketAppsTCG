@@ -29,6 +29,14 @@ jobs:
       - name: Validate manifests and download reachability
         run: node scripts/validate.mjs
 
+      # Prove the checks above actually fail when they should, so this guard
+      # cannot silently rot into "always passes".
+      - name: Validator self-test (offline cases)
+        run: node scripts/selftest.mjs
+
+      - name: Validator self-test (network cases)
+        run: node scripts/selftest.mjs --network
+
       - name: Validate manifest shape only (no network)
         if: always()
         run: node scripts/validate.mjs --offline

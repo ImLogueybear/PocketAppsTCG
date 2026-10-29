@@ -19,17 +19,21 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 
-const root = fileURLToPath(new URL("..", import.meta.url));
+const args = new Set(process.argv.slice(2));
+const offline = args.has("--offline");
+const headOnly = offline || args.has("--no-download");
+
+// `--root` lets scripts/selftest.mjs validate a mutated copy of this repository,
+// so the checks below can be proven to fail when they should.
+const rootArgIndex = process.argv.indexOf("--root");
+const root =
+  rootArgIndex > -1 ? process.argv[rootArgIndex + 1] : fileURLToPath(new URL("..", import.meta.url));
 const read = (path) => JSON.parse(readFileSync(join(root, path), "utf8"));
 const fail = (message) => {
   console.error(`invalid: ${message}`);
   process.exitCode = 1;
 };
 const warn = (message) => console.warn(`warning: ${message}`);
-
-const args = new Set(process.argv.slice(2));
-const offline = args.has("--offline");
-const headOnly = offline || args.has("--no-download");
 
 const DOWNLOAD_TIMEOUT_MS = 45_000;
 
