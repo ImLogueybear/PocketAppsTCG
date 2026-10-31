@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "appId": "pocketvendortcg",
-  "version": "0.12.5",
-  "build": 68,
-  "tag": "v0.12.5",
-  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.12.5/pocketvendortcg-debug.apk",
-  "sha256": "9cb318a521c312ea2e7f282a3d9273de025787cccaf82c183db5054c11ddbaeb",
-  "size": 5111202,
-  "notes": "Asking prices now track the live market price. Raw inventory lines derive their ask from the current catalog price (condition-adjusted) instead of a stale sold-comp snapshot; refreshed catalog prices also propagate into existing inventory and trade lines. Graded slabs keep their sold comps.",
-  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.12.5",
-  "publishedAt": "2026-10-30T02:36:10.177Z"
+  "version": "0.12.8",
+  "build": 71,
+  "tag": "v0.12.8",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.12.8/pocketvendortcg-debug.apk",
+  "sha256": "c40a574c722c88d63aa0625eb93d0946ad883f9c4e630649979ce0e369949aa5",
+  "size": 5122867,
+  "notes": "Trade deck overhaul: one Add item sheet, stock moves on completion, reopenable history. Debug build (debug-signed) for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.12.8",
+  "publishedAt": "2026-10-31T23:36:47.097Z"
 }
