@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-20T20:00:00Z",
+  "updatedAt": "2026-11-01T05:40:00Z",
   "licensing": {
     "status": "pending",
     "enforcement": "advisory",
@@ -24,15 +24,15 @@
     "currency": "USD",
     "raw": {
       "primary": "tcgplayer",
-      "providers": ["tcgplayer", "pricecharting"],
-      "reference": ["pricecharting"],
-      "notes": "TCGplayer is the primary raw-card market. PriceCharting loose-price is shown as a second reference when configured."
+      "providers": ["tcgplayer"],
+      "reference": [],
+      "notes": "TCGplayer is the raw-card market. Chinese cards have no automatic raw price source and stay manual."
     },
     "graded": {
       "primary": "ebay-sold",
-      "providers": ["ebay", "soldcomps", "pricecharting"],
-      "reference": ["pricecharting"],
-      "notes": "Use eBay sold comps first, eBay active listings as a fallback, SoldComps for realized sales, and PriceCharting as a reference."
+      "providers": ["ebay", "soldcomps"],
+      "reference": [],
+      "notes": "Realized sales come from PkmnPrices eBay sold comps; eBay active listings are the fallback. Chinese slabs stay manual."
     }
   },
   "ai": {

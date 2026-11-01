@@ -103,9 +103,10 @@ status but must not block core features while enforcement is advisory. See
 `policy.json` fixes the shared provider choices:
 
 - **Metadata, artwork, set logos/symbols:** PKMNDB.
-- **Raw card pricing:** TCGplayer (primary) with PriceCharting as a reference.
-- **Graded card comps:** eBay sold/active listings and SoldComps, with
-  PriceCharting as a reference.
+- **Raw card pricing:** TCGplayer via PokeWallet, with a keyless TCGdex estimate
+  as the fallback. Simplified Chinese cards have no automatic source.
+- **Graded card comps:** PkmnPrices eBay sold comps; asking prices are not treated
+  as evidence of value.
 - **AI scan identification:** DeepSeek vision, fallback only (never the primary
   on-device matcher).
 
