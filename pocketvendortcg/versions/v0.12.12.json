@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "appId": "pocketvendortcg",
+  "version": "0.12.12",
+  "build": 75,
+  "tag": "v0.12.12",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.12.12/pocketvendortcg-debug.apk",
+  "sha256": "d5e0b94e29760b19356ce3da1d5da8c8e45674c7077c545db83761a185d333a5",
+  "size": 5125450,
+  "notes": "Long-running work now survives navigation: price refreshes, sold comps, imports and library downloads keep running across pages with a persistent status bar and a working cancel. Debug build (debug-signed) for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.12.12",
+  "publishedAt": "2026-11-01T03:19:15.802Z"
+}
