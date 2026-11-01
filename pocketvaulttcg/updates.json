@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "appId": "pocketvaulttcg",
-  "version": "0.33.0",
-  "build": 88,
-  "tag": "v0.33.0",
-  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvaulttcg/v0.33.0/PocketVaultTCG-0.33.0-debug.apk",
-  "sha256": "b6a4750d1373765c4da2f2a0c4536a27fb2030c477111df0d2bd3d40dc9c25b0",
-  "size": 8219431,
-  "notes": "Fixes in-app updates: the Update button now opens the download in the system browser (the WebView ignored window.open), and the update feed points at a public APK instead of a private release page.",
-  "releaseUrl": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.33.0",
-  "publishedAt": "2026-10-29T04:03:46.377Z"
+  "version": "0.34.0",
+  "build": 89,
+  "tag": "v0.34.0",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvaulttcg/v0.34.0/PocketVaultTCG-0.34.0-debug.apk",
+  "sha256": "85b3957e55047b5df5b401c468ea11089a0ef0b3f135b6845b42b7b30707a1e7",
+  "size": 8215723,
+  "notes": "### Removed\r\n- **PriceCharting integration.** The optional token, the raw/graded reference rows\r\n  in the price and comps panels, the query/number helpers and the purge plumbing\r\n  are removed. Raw prices are TCGdex first (PkmnPrices only as the Japanese\r\n  fallback) and graded slabs use PkmnPrices eBay sold comps only.\r\n- The `test:pricing` script and its CI step are gone with the integration.\r\n\r\n### Changed\r\n- **Simplified Chinese cards are explicitly manual.** Neither TCGdex nor\r\n  PkmnPrices carries a Simplified Chinese USD catalogue, and the PriceCharting\r\n  CSV covered only about 40% of it while its licence forbade in-app\r\n  redistribution. Price checks now report that gap and point at setting a price\r\n  by hand; bulk refresh still skips Chinese.\r\n- The shared pricing-policy defaults no longer list PriceCharting, and the\r\n  provider key list is back to PkmnPrices and DeepSeek.\r\n\r\nNo scan-index rebuild is needed for this release.\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from 0b323fe0aabc61aced2f4f491c6990a364ff9670.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.34.0",
+  "publishedAt": "2026-11-01T15:05:16.377Z"
 }
