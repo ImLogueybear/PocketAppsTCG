@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "appId": "pocketvendortcg",
-  "version": "0.12.17",
-  "build": 80,
-  "tag": "v0.12.17",
-  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.12.17/pocketvendortcg-debug.apk",
-  "sha256": "a507d4771f49165c3a2cd5aae7f72acd6b0ff166459443bf14f18c4a34b2fd18",
-  "size": 5133713,
-  "notes": "CardMarket euro figures are no longer stored as dollar prices; a CardMarket-only card now reports no USD price. Debug build (debug-signed) for testing.",
-  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.12.17",
-  "publishedAt": "2026-11-01T05:33:10.633Z"
+  "version": "0.13.0",
+  "build": 81,
+  "tag": "v0.13.0",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.13.0/pocketvendortcg-debug.apk",
+  "sha256": "56334aa1b7b20a14ab8490f1ef4a07155dd8fe20fc2d1e0fcb9aedfc195433e8",
+  "size": 5126231,
+  "notes": "Debug build of the PocketVendorTCG Android app (debug-signed). Sideload for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.13.0",
+  "publishedAt": "2026-11-01T15:07:50.555Z"
 }
