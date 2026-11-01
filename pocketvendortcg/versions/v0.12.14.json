@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "appId": "pocketvendortcg",
+  "version": "0.12.14",
+  "build": 77,
+  "tag": "v0.12.14",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.12.14/pocketvendortcg-debug.apk",
+  "sha256": "f0a01a14141cfedeb2eb2fa7a3ad96b07888e90c3d002339f78694ed242fad4b",
+  "size": 5132906,
+  "notes": "Binder position on every item, selection bulk edit, and a needs-pricing walkthrough. Debug build (debug-signed) for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.12.14",
+  "publishedAt": "2026-11-01T04:22:06.257Z"
+}
