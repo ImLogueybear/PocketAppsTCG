@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "appId": "pocketvendortcg",
+  "version": "0.12.15",
+  "build": 78,
+  "tag": "v0.12.15",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.12.15/pocketvendortcg-debug.apk",
+  "sha256": "928372e56b89e35dfa0b97b5160d1ecb2236764c4c32e993b05266e1f8b2bbd5",
+  "size": 5133545,
+  "notes": "Repairs Japanese set ids so the right price source is used, stops a missing printing falling back to another printing's price, and explains why a card has no price. Debug build (debug-signed) for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.12.15",
+  "publishedAt": "2026-11-01T04:57:13.697Z"
+}
