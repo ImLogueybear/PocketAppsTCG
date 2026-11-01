@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "appId": "pocketvendortcg",
-  "version": "0.12.8",
-  "build": 71,
-  "tag": "v0.12.8",
-  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.12.8/pocketvendortcg-debug.apk",
-  "sha256": "c40a574c722c88d63aa0625eb93d0946ad883f9c4e630649979ce0e369949aa5",
-  "size": 5122867,
-  "notes": "Trade deck overhaul: one Add item sheet, stock moves on completion, reopenable history. Debug build (debug-signed) for testing.",
-  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.12.8",
-  "publishedAt": "2026-10-31T23:36:47.097Z"
+  "version": "0.12.9",
+  "build": 72,
+  "tag": "v0.12.9",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.12.9/pocketvendortcg-debug.apk",
+  "sha256": "77b6d4d8260603180ea50201546af41b7f4f157711487394c84ef29a8dc950b0",
+  "size": 5123039,
+  "notes": "Stops the card library re-syncing on every launch. Debug build (debug-signed) for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.12.9",
+  "publishedAt": "2026-11-01T00:42:13.703Z"
 }
