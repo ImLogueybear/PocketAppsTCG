@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "appId": "pocketvendortcg",
+  "version": "0.12.13",
+  "build": 76,
+  "tag": "v0.12.13",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.12.13/pocketvendortcg-debug.apk",
+  "sha256": "76c3ae5c5c53a47b37b4f240135e8350a38cf6c62f7227d80d70e3088c826389",
+  "size": 5129345,
+  "notes": "Continuous scanning with two-frame confirmation and a per-card cooldown, plus a ten-minute cooldown on the bulk portfolio price refresh. Debug build (debug-signed) for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.12.13",
+  "publishedAt": "2026-11-01T04:10:14.600Z"
+}
