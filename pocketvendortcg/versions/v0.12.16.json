@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "appId": "pocketvendortcg",
+  "version": "0.12.16",
+  "build": 79,
+  "tag": "v0.12.16",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.12.16/pocketvendortcg-debug.apk",
+  "sha256": "7f348ddcbbea15eba7c9b3f9a9af5644cb52548ee43d82b9b41d83c456c23e01",
+  "size": 5133790,
+  "notes": "Japanese sets resolve by name when the static PkmnPrices map has no entry, and an unpriced Japanese card states the real gap. Debug build (debug-signed) for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.12.16",
+  "publishedAt": "2026-11-01T05:14:15.344Z"
+}
