@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "appId": "pocketvendortcg",
-  "version": "0.12.10",
-  "build": 73,
-  "tag": "v0.12.10",
-  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.12.10/pocketvendortcg-debug.apk",
-  "sha256": "98d0a055228031f8fac1ce3703769ec34e5f2551dda3f6a9894dc8977f00311d",
-  "size": 5125240,
-  "notes": "Animated price lookup with haptic and toast feedback, per-card margin pills, price-age chips and an Unrealized dashboard stat. Debug build (debug-signed) for testing.",
-  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.12.10",
-  "publishedAt": "2026-11-01T01:56:53.440Z"
+  "version": "0.12.11",
+  "build": 74,
+  "tag": "v0.12.11",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.12.11/pocketvendortcg-debug.apk",
+  "sha256": "2d609fe6437d266204884f123319d99cd790537eda2b5592385d38866a26b178",
+  "size": 5125218,
+  "notes": "Grading chips stay on one line, and a graded slab's price age now comes from its sold comps rather than the raw card price. Debug build (debug-signed) for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.12.11",
+  "publishedAt": "2026-11-01T02:39:22.502Z"
 }
