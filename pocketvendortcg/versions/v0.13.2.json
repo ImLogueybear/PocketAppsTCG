@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "appId": "pocketvendortcg",
+  "version": "0.13.2",
+  "build": 83,
+  "tag": "v0.13.2",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.13.2/pocketvendortcg-debug.apk",
+  "sha256": "b894ca5f9b5d9d0305445e67ef9910b975f736a36a3dfc492f24526ec815bc06",
+  "size": 5133867,
+  "notes": "Debug build of the PocketVendorTCG Android app (debug-signed). Sideload for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.13.2",
+  "publishedAt": "2026-11-02T03:53:42.413Z"
+}
