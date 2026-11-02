@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "appId": "pocketvaulttcg",
-  "version": "0.34.0",
-  "build": 89,
-  "tag": "v0.34.0",
-  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvaulttcg/v0.34.0/PocketVaultTCG-0.34.0-debug.apk",
-  "sha256": "85b3957e55047b5df5b401c468ea11089a0ef0b3f135b6845b42b7b30707a1e7",
-  "size": 8215723,
-  "notes": "### Removed\r\n- **PriceCharting integration.** The optional token, the raw/graded reference rows\r\n  in the price and comps panels, the query/number helpers and the purge plumbing\r\n  are removed. Raw prices are TCGdex first (PkmnPrices only as the Japanese\r\n  fallback) and graded slabs use PkmnPrices eBay sold comps only.\r\n- The `test:pricing` script and its CI step are gone with the integration.\r\n\r\n### Changed\r\n- **Simplified Chinese cards are explicitly manual.** Neither TCGdex nor\r\n  PkmnPrices carries a Simplified Chinese USD catalogue, and the PriceCharting\r\n  CSV covered only about 40% of it while its licence forbade in-app\r\n  redistribution. Price checks now report that gap and point at setting a price\r\n  by hand; bulk refresh still skips Chinese.\r\n- The shared pricing-policy defaults no longer list PriceCharting, and the\r\n  provider key list is back to PkmnPrices and DeepSeek.\r\n\r\nNo scan-index rebuild is needed for this release.\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from 0b323fe0aabc61aced2f4f491c6990a364ff9670.",
-  "releaseUrl": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.34.0",
-  "publishedAt": "2026-11-01T15:05:16.377Z"
+  "version": "0.35.0",
+  "build": 90,
+  "tag": "v0.35.0",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvaulttcg/v0.35.0/PocketVaultTCG-0.35.0-debug.apk",
+  "sha256": "b444159d88dcf89e55ad5159bcd6743e1f3040ab3957ba4da93f3988a6104287",
+  "size": 8219231,
+  "notes": "### Added\r\n- **Field prefixes in card search.** One box now answers \"which Charizard, from\r\n  which set?\" — `charizard set:evolving-skies year:2021 215` works in the Search\r\n  tab, the scan card picker and a set's own filter. `name:`, `set:`, `year:`\r\n  (single or `1999-2002`), `lang:` (`en`/`ja`/`zh` plus `jp`/`cn` aliases) and\r\n  `number:` (`#215` shorthand) are ANDed; plain words keep today's name/set/number\r\n  matching. `set:` ignores punctuation, so `team-rocket` finds Team Rocket, and an\r\n  unknown prefix like `foo:bar` stays free text.\r\n- A `Fields` button beside the search box opens a syntax cheat sheet, and parsed\r\n  terms appear as chips underneath (`set: Evolving Skies`, `2021`, `Japanese`,\r\n  `#215`). A malformed field (`year:abc`, `lang:xx`) is shown as an error chip and\r\n  ignored as a filter instead of silently emptying the list.\r\n- `src/lib/searchQuery.ts` owns the grammar and `cardSearch.ts` gains the single\r\n  `entryMatches`/`filterEntries` pair every surface shares, replacing the two\r\n  hand-rolled predicates in `CardPicker` and `SetDetail`.\r\n- Set names and years are passed per query rather than baked into the cached\r\n  index, so the post-paint `useSets()` overlay cannot stale it, and plain-word\r\n  matching gains a set-name path it previously lacked. `number:` still tries an\r\n  exact match before falling back to a substring. No Dexie schema change and no\r\n  scan-index rebuild.\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from 602a94936f7120d61f04a9bdc5b2f5b2f25e1f05.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.35.0",
+  "publishedAt": "2026-11-02T01:45:26.394Z"
 }
