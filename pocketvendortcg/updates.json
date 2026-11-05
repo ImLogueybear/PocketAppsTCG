@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "appId": "pocketvendortcg",
-  "version": "0.13.14",
-  "build": 95,
-  "tag": "v0.13.14",
-  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.13.14/pocketvendortcg-debug.apk",
-  "sha256": "5b94cf62068df14567854361afae17a10c3f8705bef645381e53c4d5e81d6d08",
-  "size": 5126307,
-  "notes": "Debug build of the PocketVendorTCG Android app (debug-signed). Sideload for testing.",
-  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.13.14",
-  "publishedAt": "2026-11-05T04:22:34.580Z"
+  "version": "0.13.15",
+  "build": 96,
+  "tag": "v0.13.15",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.13.15/pocketvendortcg-debug.apk",
+  "sha256": "963c5d07bdda69910083f0f2696e9054ccf878d9a9fcd3539029277670a26793",
+  "size": 5127040,
+  "notes": "Debug build with stamped-card support.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.13.15",
+  "publishedAt": "2026-11-05T06:07:19.704Z"
 }
