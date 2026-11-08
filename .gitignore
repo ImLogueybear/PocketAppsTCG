@@ -2,3 +2,7 @@ node_modules/
 *.log
 .DS_Store
 Thumbs.db
+
+# Build output for the shared conditioning worker.
+conditioning-worker/dist/
+scripts/.cache/

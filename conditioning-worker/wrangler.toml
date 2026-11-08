@@ -1,0 +1,26 @@
+name = "pocket-condition"
+main = "dist/worker.js"
+
+# Mirrors what is configured on the Cloudflare side so a deploy does not
+# silently revert the dashboard settings (observability/logging, preview URLs
+# and the compatibility date). Keep these in sync with the dashboard.
+compatibility_date = "2026-11-08"
+preview_urls = false
+
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
+
+[vars]
+# Which provider the grading service calls: "deepseek" or "ollama".
+# Both speak the OpenAI chat-completions shape and both support JSON mode,
+# vision and reasoning control.
+CONDITION_PROVIDER = "deepseek"
+
+# Override the model for the chosen provider. Leave unset to use the provider's
+# default. DeepSeek: "deepseek-flash" (the only DeepSeek model with vision).
+# Ollama: "gemma4:31b", "muse-spark-open", "kimi-k3", "mistral-large-4",
+# "mimo-v2.6-pro" or "deepseek-v4.1-flash" — all of which do vision.
+# CONDITION_MODEL = "deepseek-flash"

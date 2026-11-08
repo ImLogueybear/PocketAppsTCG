@@ -18,6 +18,7 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
+import { spawnSync } from "node:child_process";
 
 const args = new Set(process.argv.slice(2));
 const offline = args.has("--offline");
@@ -184,6 +185,21 @@ const licenseDir = join(root, "licensing");
 for (const file of readdirSync(licenseDir).filter((f) => f.endsWith(".json"))) {
   const path = `licensing/${file}`;
   if (!expected.has(path)) fail(`${path} is not registered in index.json`);
+}
+
+// The conditioning rulebook is shared source. The apps carry a copy of it, and
+// two apps with two copies of a rulebook is how the two of them start
+// disagreeing about what Near Mint means.
+{
+  const sync = spawnSync(
+    process.execPath,
+    [join(root, "scripts", "sync-conditioning.mjs"), "--check", "--root", root],
+    { encoding: "utf8" },
+  );
+  if (sync.status !== 0) {
+    const detail = `${sync.stdout ?? ""}${sync.stderr ?? ""}`.trim();
+    fail(`the conditioning rulebook has drifted from the apps:\n${detail}`);
+  }
 }
 
 /**
