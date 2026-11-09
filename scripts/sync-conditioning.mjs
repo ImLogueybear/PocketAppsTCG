@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Sync the shared conditioning rulebook into the two apps.
+ * Sync the shared conditioning rulebook into the apps.
  *
  * `conditioning/rubric.ts` and `conditioning/rubric.test.ts` are the single
  * source of truth. The apps cannot import across repositories, so they carry a
@@ -47,6 +47,7 @@ const SHARED_FILES = ["rubric.ts", "rubric.test.ts"];
 const TARGETS = [
   { app: "PocketVendorTCG", dir: join(appsRoot, "PocketVendorTCG", "src", "lib", "conditioning") },
   { app: "PocketVaultTCG", dir: join(appsRoot, "PocketVaultTCG", "src", "lib", "conditioning") },
+  { app: "PocketScanTCG", dir: join(appsRoot, "PocketScanTCG", "src", "lib", "conditioning") },
 ];
 
 const BANNER = `// Synced from PocketAppsTCG/conditioning by scripts/sync-conditioning.mjs.
@@ -104,7 +105,7 @@ if (checkOnly) {
     console.error("Run: node scripts/sync-conditioning.mjs");
     process.exit(1);
   }
-  console.log("conditioning rulebook is in sync with both apps");
+  console.log("conditioning rulebook is in sync with every app");
 } else if (!written) {
   console.log("conditioning rulebook already in sync");
 } else {

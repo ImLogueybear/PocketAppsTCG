@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T05:40:00Z",
+  "updatedAt": "2026-11-09T03:50:00Z",
   "licensing": {
     "status": "pending",
     "enforcement": "advisory",
@@ -42,5 +42,14 @@
     "purpose": "scan-identification",
     "fallbackOnly": true,
     "notes": "DeepSeek is consulted only when the on-device matcher/OCR result is below the app's confidence threshold."
+  },
+  "conditioning": {
+    "purpose": "condition-estimate",
+    "worker": "https://pocket-condition.blogue-e68.workers.dev",
+    "workerSource": "conditioning-worker/worker.ts",
+    "rulebook": "conditioning/rubric.ts",
+    "provider": "deepseek",
+    "model": "deepseek-flash",
+    "notes": "The shared Worker holds the key and returns observations only. Each app measures the reported boxes against the card and applies the TCGplayer rulebook itself, so the condition is never the model's opinion. A condition estimate is not a professional grade and is not an authenticity result."
   }
 }

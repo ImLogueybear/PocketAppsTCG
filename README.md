@@ -109,6 +109,11 @@ status but must not block core features while enforcement is advisory. See
   as evidence of value.
 - **AI scan identification:** DeepSeek vision, fallback only (never the primary
   on-device matcher).
+- **Condition estimates:** the shared `conditioning-worker` (DeepSeek vision)
+  reports observations only. Each app measures the boxes against the card and
+  applies `conditioning/rubric.ts` itself, so the condition is never the model's
+  opinion. A condition estimate is not a professional grade and is not an
+  authenticity result.
 
 Applications may keep local overrides for keys and offline fallbacks, but new
 integrations should follow this policy.

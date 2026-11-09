@@ -1,6 +1,6 @@
 /**
  * TCGplayer card conditioning rulebook — the single source of truth shared by
- * PocketVendorTCG and PocketVaultTCG.
+ * PocketVendorTCG, PocketVaultTCG and PocketScanTCG.
  *
  * This file is deliberately dependency-free and DOM-free so the exact same code
  * runs in three places:
