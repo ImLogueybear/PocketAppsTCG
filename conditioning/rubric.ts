@@ -1028,11 +1028,17 @@ export function measureObservations(
         : undefined;
 
     let cardRect: Rect | undefined;
+    let mapped: Rect | undefined;
     let measure: number | undefined;
     let linear = false;
     const label = raw.severity && isKnownSeverity(raw.severity) ? raw.severity : undefined;
-    if (image && bbox && image.measurable !== false) {
-      cardRect = toCardRegion(bbox, image.cardRegion);
+    if (image && bbox) {
+      // Keep the location even when the box is too coarse to measure: the app
+      // shows it to the collector, it just does not derive a size from it.
+      mapped = toCardRegion(bbox, image.cardRegion);
+    }
+    if (mapped && image && image.measurable !== false) {
+      cardRect = mapped;
       const measurement = measureImperfection(raw.type, cardRect, DEFAULT_CARD_GEOMETRY);
       if (measurement) {
         const bands =
@@ -1056,7 +1062,7 @@ export function measureObservations(
       observation: {
         type: raw.type,
         side: raw.side,
-        bbox: cardRect,
+        bbox: mapped,
         measure,
         linear,
         severity: label,
