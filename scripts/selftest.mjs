@@ -27,6 +27,7 @@ function withCopy(mutate) {
     "scripts",
     "licensing",
     "pkmndb",
+    "conditioning",
     ...index.apps.map((app) => app.id),
   ];
   for (const name of roots) cpSync(join(repoRoot, name), join(dir, name), { recursive: true });
@@ -130,6 +131,7 @@ function runCase(testCase) {
     "scripts",
     "licensing",
     "pkmndb",
+    "conditioning",
     ...index.apps.map((app) => app.id),
   ];
   for (const name of roots) cpSync(join(repoRoot, name), join(dir, name), { recursive: true });
