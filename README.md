@@ -112,8 +112,10 @@ status but must not block core features while enforcement is advisory. See
 - **Condition estimates:** the shared `conditioning-worker` (DeepSeek vision)
   reports observations only. Each app measures the boxes against the card and
   applies `conditioning/rubric.ts` itself, so the condition is never the model's
-  opinion. A condition estimate is not a professional grade and is not an
-  authenticity result.
+  opinion. App reliability is evidence-based (`confidenceFromTally`), and a model
+  change must first win on the labelled cases in `conditioning-eval/`. A
+  condition estimate is not a professional grade and is not an authenticity
+  result.
 
 Applications may keep local overrides for keys and offline fallbacks, but new
 integrations should follow this policy.

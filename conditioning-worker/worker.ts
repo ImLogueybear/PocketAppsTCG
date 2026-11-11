@@ -38,7 +38,7 @@ interface Env {
 
 const MAX_IMAGES = 24;
 const MAX_BODY_BYTES = 40 * 1024 * 1024;
-const REQUEST_TIMEOUT_MS = 120_000;
+const REQUEST_TIMEOUT_MS = 180_000;
 
 /**
  * The providers the grading service can call.

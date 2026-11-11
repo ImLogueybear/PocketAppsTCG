@@ -9,10 +9,19 @@ with the vendor.
 node scripts/eval-conditioning.mjs
 node scripts/eval-conditioning.mjs --case <id>
 node scripts/eval-conditioning.mjs --url http://localhost:8787 --min-agreement 0.8
+node scripts/eval-conditioning.mjs --matrix "deepseek:deepseek-flash,ollama:gemma4:31b"
 ```
 
 `--url` points at a local worker (`npm run build:worker && npx wrangler dev`)
-so a rubric change can be checked before it is deployed.
+so a rubric change can be checked before it is deployed. `--matrix` runs every
+case against each candidate (provider:model) so two models see exactly the same
+photos. The service must allow the override (`CONDITION_ALLOW_CALLER_KEY=1` with
+a caller key) or be a staging deployment configured with
+`CONDITION_PROVIDER`/`CONDITION_MODEL`.
+
+Every run writes `conditioning-eval/report.json` and `report.md`: exact and
+within-one agreement, mean reliability, a confidence-calibration table
+(reliability bucket → observed exact rate) and per-type missed/spurious counts.
 
 ## Adding a case
 
@@ -83,6 +92,11 @@ A vendor called it MP. The card should not come back MP.
 - **within one grade** — off by at most one step (NM/LP/MP/HP/DMG).
 - **missed** — an expected imperfection type the service did not report.
 - **extra** — a type the service reported that the vendor did not list.
+- **reliability** — the score the app would show, from the shared
+  `confidenceFromTally`. Node has no image decoder here, so sharpness, brightness
+  and glare are neutral for every case. Those terms are identical across models,
+  so compare candidates on the same photos and treat the absolute number as an
+  upper bound.
 
 The missed/extra columns are the useful ones: they say whether a rulebook
 change or a prompt change actually improved the *perception*, which a grade

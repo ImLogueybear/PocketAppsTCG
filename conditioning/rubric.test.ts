@@ -10,6 +10,7 @@
 import {
   DEFAULT_CARD_GEOMETRY,
   RULES,
+  confidenceFromTally,
   gradeFromObservations,
   measureImperfection,
   pointsToGrade,
@@ -215,6 +216,59 @@ export function runRubricTests(): RubricTestResult[] {
     closeUp
   );
   expect(results, "a box that contradicts the model is discarded", contradicted.points, 1);
+
+  // ── Evidence confidence ────────────────────────────────────────────────────
+  const goodPhotos = [
+    { id: "front" as const, width: 2700, height: 3770, sharpness: 220, brightness: 142, glare: 0.01 },
+    { id: "back" as const, width: 2700, height: 3770, sharpness: 210, brightness: 138, glare: 0.02 },
+    { id: "surface" as const, width: 2600, height: 3300, sharpness: 120, brightness: 92, glare: 0.03 },
+  ];
+  const good = confidenceFromTally(precise, { photos: goodPhotos, imagesSent: 23 });
+  expect(results, "good evidence scores high", good.score >= 85, true);
+  expect(results, "good evidence is the high band", good.band, "high");
+  expect(results, "good evidence needs no advice", good.reasons, []);
+
+  const roughPhotos = [
+    { id: "front" as const, width: 1300, height: 1815, sharpness: 30, brightness: 120, glare: 0.12 },
+    { id: "back" as const, width: 1300, height: 1815, sharpness: 35, brightness: 118, glare: 0.12 },
+  ];
+  const rough = confidenceFromTally(coarse, { photos: roughPhotos, imagesSent: 14 });
+  expect(results, "a low-resolution soft set scores low", rough.score < 65, true);
+  expect(results, "a low-resolution soft set is the low band", rough.band, "low");
+  expect(
+    results,
+    "the low-resolution reason is named",
+    rough.reasons.some((reason) => reason.includes("px per mm")),
+    true,
+  );
+
+  const partial = confidenceFromTally(precise, {
+    photos: goodPhotos.slice(0, 2),
+    imagesSent: 14,
+  });
+  expect(results, "missing the surface shot lowers the score", partial.score < good.score, true);
+  expect(
+    results,
+    "the missing surface shot is named",
+    partial.reasons.some((reason) => reason.includes("raking-light")),
+    true,
+  );
+
+  const borderline = confidenceFromTally(threeIndents, { photos: goodPhotos, imagesSent: 23 });
+  const clean = confidenceFromTally(tally([{ type: "Indentation", measure: 0.5 }]), {
+    photos: goodPhotos,
+    imagesSent: 23,
+  });
+  expect(results, "a borderline card scores lower than a clean one", borderline.score < clean.score, true);
+
+  const disputed = confidenceFromTally(contradicted, { photos: goodPhotos, imagesSent: 23 });
+  expect(results, "a contradicting box lowers the score", disputed.score < clean.score, true);
+  expect(
+    results,
+    "a contradicting box is named",
+    disputed.reasons.some((reason) => reason.includes("disagreed")),
+    true,
+  );
 
   return results;
 }

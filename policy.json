@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-09T03:50:00Z",
+  "updatedAt": "2026-11-11T04:00:00Z",
   "licensing": {
     "status": "pending",
     "enforcement": "advisory",
@@ -50,6 +50,8 @@
     "rulebook": "conditioning/rubric.ts",
     "provider": "deepseek",
     "model": "deepseek-flash",
-    "notes": "The shared Worker holds the key and returns observations only. Each app measures the reported boxes against the card and applies the TCGplayer rulebook itself, so the condition is never the model's opinion. A condition estimate is not a professional grade and is not an authenticity result."
+    "confidence": "evidence-based",
+    "evaluation": "conditioning-eval/",
+    "notes": "The shared Worker holds the key and returns observations only. Each app measures the reported boxes against the card and applies the TCGplayer rulebook itself, so the condition is never the model's opinion. App confidence is computed from the evidence (photo detail, sharpness, glare, measurement agreement, coverage, grade margin), not from the model's self-report. Models are compared on labelled cases before the default is changed. A condition estimate is not a professional grade and is not an authenticity result."
   }
 }

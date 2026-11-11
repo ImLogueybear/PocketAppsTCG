@@ -48,7 +48,7 @@
  */
 
 /** Bump when the rulebook changes; the Worker reports it so apps can go stale. */
-export const RUBRIC_VERSION = "2026.11.08-1";
+export const RUBRIC_VERSION = "2026.11.11-1";
 
 export const CONDITION_SOURCES = {
   overview:
@@ -687,6 +687,8 @@ export interface TallyObservation {
   integrity?: boolean;
   /** A bend that has creased the card. */
   crease?: boolean;
+  /** The box disagreed with the reported severity by more than one band. */
+  contradicted?: boolean;
   /** 0..1 confidence in the observation. */
   confidence?: number;
   note?: string;
@@ -699,6 +701,8 @@ export interface TallyImperfection {
   /** Where the imperfection is on the card, normalised to the card rectangle. */
   bbox?: Rect;
   severity: Severity;
+  /** The severity the model reported, kept so the app can score the agreement. */
+  reportedSeverity?: Severity;
   points: number;
   /** The best condition at which this imperfection would still be acceptable. */
   floor: ConditionGrade;
@@ -743,6 +747,8 @@ export interface TallyResult {
   imperfections: TallyImperfection[];
   /** Imperfections worth a second look before the card is listed. */
   uncertain: TallyImperfection[];
+  /** Observations whose box contradicted their severity by more than one band. */
+  contradictions: number;
   flags: TallyFlags;
   notes: string[];
 }
@@ -767,10 +773,12 @@ export function tally(observations: TallyObservation[]): TallyResult {
 
   let points = 0;
   let allowanceGrade: ConditionGrade = "NM";
+  let contradictions = 0;
 
   for (const observation of observations) {
     const rule = RULES[observation.type];
     if (!rule) continue;
+    if (observation.contradicted === true) contradictions += 1;
 
     const hasMeasure =
       typeof observation.measure === "number" && Number.isFinite(observation.measure);
@@ -809,6 +817,7 @@ export function tally(observations: TallyObservation[]): TallyResult {
       side: observation.side,
       bbox: observation.bbox,
       severity,
+      reportedSeverity: observation.severity,
       points: instancePoints,
       floor,
       measure: hasMeasure ? observation.measure : undefined,
@@ -892,6 +901,7 @@ export function tally(observations: TallyObservation[]): TallyResult {
     allowanceGrade,
     imperfections: counted,
     uncertain,
+    contradictions,
     flags,
     notes,
   };
@@ -1031,6 +1041,7 @@ export function measureObservations(
     let mapped: Rect | undefined;
     let measure: number | undefined;
     let linear = false;
+    let contradicted = false;
     const label = raw.severity && isKnownSeverity(raw.severity) ? raw.severity : undefined;
     if (image && bbox) {
       // Keep the location even when the box is too coarse to measure: the app
@@ -1051,6 +1062,8 @@ export function measureObservations(
         if (!label || Math.abs(severityRank(measured) - severityRank(label)) <= MEASUREMENT_AGREEMENT) {
           measure = measurement.measure;
           linear = measurement.linear;
+        } else {
+          contradicted = true;
         }
       }
     }
@@ -1066,6 +1079,7 @@ export function measureObservations(
         measure,
         linear,
         severity: label,
+        contradicted,
         confidence: raw.confidence,
         note: raw.note,
         integrity: raw.integrity === true,
@@ -1111,6 +1125,190 @@ export function gradeFromChecklist(answers: ChecklistAnswer[]): TallyResult {
     });
   }
   return tally(observations);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Confidence
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * One photo's measured evidence.
+ *
+ * `width` is the card crop's pixel width *before* any downscale for the model,
+ * because that is the optical detail the close-ups were cut from.
+ */
+export interface EvidencePhoto {
+  id: "front" | "back" | "surface";
+  width: number;
+  height: number;
+  /** Laplacian variance. */
+  sharpness: number;
+  /** Mean luminance, 0..255. */
+  brightness: number;
+  /** Fraction of pixels near white, 0..1. */
+  glare: number;
+}
+
+export interface ConfidenceEvidence {
+  photos: EvidencePhoto[];
+  /** Images actually sent in the request. */
+  imagesSent: number;
+  /** Images the model itself reported as unusable. */
+  unusableImages?: number;
+}
+
+export interface ConfidenceReport {
+  /** 0..100. */
+  score: number;
+  band: "high" | "medium" | "low";
+  breakdown: {
+    photo: number;
+    agreement: number;
+    coverage: number;
+    boundary: number;
+    penalty: number;
+  };
+  /** Up to three concrete things that would raise the score. */
+  reasons: string[];
+}
+
+function clamp01(value: number): number {
+  return Math.max(0, Math.min(1, value));
+}
+
+function sideName(id: "front" | "back"): string {
+  return id === "front" ? "The front" : "The back";
+}
+
+/**
+ * Score the reliability of an estimate from the evidence, not from what the
+ * model says about itself.
+ *
+ * The model is told to lower its confidence when it is unsure, so its own number
+ * says little about whether the answer is trustworthy. What does say something
+ * is how much optical detail there was, how well the model's labels agree with
+ * the measured sizes, how many angles were sent, and how close the card sits to
+ * a grade boundary. The score is deliberately allowed to fall: a soft, glared or
+ * low-resolution set should not look reliable.
+ *
+ * This is a presentation aid, never part of the grade itself.
+ */
+export function confidenceFromTally(
+  result: TallyResult,
+  evidence: ConfidenceEvidence,
+): ConfidenceReport {
+  const photos = evidence.photos ?? [];
+  const front = photos.find((photo) => photo.id === "front");
+  const back = photos.find((photo) => photo.id === "back");
+  const surface = photos.find((photo) => photo.id === "surface");
+
+  const cardWidth = Math.min(front?.width ?? 0, back?.width ?? 0);
+  const pxPerMm = cardWidth > 0 ? cardWidth / CARD_SIZES.standard.widthMm : 0;
+  // 20 px/mm is a 1 mm pinpoint at 20 px; 40 px/mm is where fine detail stops
+  // being a guess. The tight condition guide is built to reach the top.
+  const resolution = clamp01((pxPerMm - 20) / 20);
+
+  const photoScore = (photo: EvidencePhoto | undefined): number => {
+    if (!photo) return 0;
+    const sharpness = clamp01((photo.sharpness - 40) / 120);
+    const glare = 1 - clamp01((photo.glare - 0.03) / 0.15);
+    const exposure = 1 - clamp01(Math.abs(photo.brightness - 140) / 100);
+    return 0.4 * resolution + 0.35 * sharpness + 0.15 * glare + 0.1 * exposure;
+  };
+
+  const sides = [front, back].filter((photo): photo is EvidencePhoto => Boolean(photo));
+  const photo = sides.length
+    ? sides.reduce((sum, entry) => sum + photoScore(entry), 0) / sides.length
+    : 0;
+
+  const measured = result.imperfections.filter((entry) => entry.measured);
+  const signals = measured.length + result.contradictions;
+  const agreement = signals ? measured.length / signals : 0.7;
+
+  const required = Boolean(front && back);
+  const coverage =
+    (required ? 0.6 : 0) +
+    (surface ? 0.2 : 0) +
+    Math.min(0.2, (0.2 * Math.max(0, evidence.imagesSent)) / 19);
+
+  const nearCount = result.imperfections.filter((entry) => entry.nearBoundary).length;
+  const boundary = Math.max(
+    0.35,
+    clamp01(1 - (result.borderline ? 0.5 : 0) - 0.12 * nearCount),
+  );
+
+  const penalty = Math.min(
+    0.18,
+    0.03 * result.uncertain.length + 0.05 * Math.max(0, evidence.unusableImages ?? 0),
+  );
+
+  const weighted =
+    0.4 * photo + 0.25 * agreement + 0.15 * coverage + 0.2 * boundary - penalty;
+  const score = Math.round(100 * Math.max(0.05, Math.min(0.98, weighted)));
+  const band: ConfidenceReport["band"] = score >= 80 ? "high" : score >= 60 ? "medium" : "low";
+
+  const reasons: { weight: number; text: string }[] = [];
+  if (pxPerMm > 0 && resolution < 0.85) {
+    reasons.push({
+      weight: 1 - resolution,
+      text: `The card is only ${Math.round(pxPerMm)} px per mm — retake with it filling the frame for 1 mm detail.`,
+    });
+  }
+  for (const id of ["front", "back"] as const) {
+    const entry = id === "front" ? front : back;
+    if (!entry) continue;
+    const sharpness = clamp01((entry.sharpness - 40) / 120);
+    if (sharpness < 0.65) {
+      reasons.push({
+        weight: 1 - sharpness,
+        text: `${sideName(id)} photo is soft — hold steadier and tap to refocus.`,
+      });
+    }
+    const glare = 1 - clamp01((entry.glare - 0.03) / 0.15);
+    if (glare < 0.7) {
+      reasons.push({
+        weight: 1 - glare,
+        text: `${sideName(id)} photo has glare over ${Math.round(entry.glare * 100)}% of the frame — tilt away from the light.`,
+      });
+    }
+  }
+  if (!surface) {
+    reasons.push({
+      weight: 0.6,
+      text: "Add the raking-light photo — it is what reveals scratches and print lines.",
+    });
+  }
+  if (result.contradictions > 0) {
+    reasons.push({
+      weight: 1 - agreement,
+      text: `The model's box disagreed with its own severity on ${result.contradictions} mark${
+        result.contradictions === 1 ? "" : "s"
+      } — check those by eye.`,
+    });
+  }
+  if (result.borderline || nearCount > 0) {
+    reasons.push({
+      weight: result.borderline ? 0.9 : 0.4,
+      text: result.borderline
+        ? "The card sits exactly on a grade boundary — one small mark changes the grade."
+        : "A mark sits close to a size band — its severity could go either way.",
+    });
+  }
+  if ((evidence.unusableImages ?? 0) > 0) {
+    reasons.push({
+      weight: 1,
+      text: `The model could not use ${evidence.unusableImages} of the photos — retake those.`,
+    });
+  }
+
+  reasons.sort((a, b) => b.weight - a.weight);
+
+  return {
+    score,
+    band,
+    breakdown: { photo, agreement, coverage, boundary, penalty },
+    reasons: reasons.slice(0, 3).map((entry) => entry.text),
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1239,6 +1437,7 @@ export const OBSERVATION_SCHEMA = `{
       "bbox": [0.0, 0.0, 0.0, 0.0],
       "severity": "Slight | Minor | Moderate | Major",
       "confidence": 0.0,
+      "integrity": false,
       "note": "what you can actually see"
     }
   ],
@@ -1292,6 +1491,9 @@ WHAT TO REPORT
 - Give a severity that matches the measurement you are reporting. If you are unsure between two severities, choose the lower one and lower the confidence.
 - Judge the exact size of an imperfection from the close-up that shows it. On a whole-card shot, judge how bad it looks rather than how far it runs — the close-ups are where the size is measured.
 - The same imperfection can appear in more than one image. Report it once, using the image where it is clearest.
+- When a defect appears in both a whole-card shot and a close-up, report it from the close-up. The close-ups are where it can actually be measured.
+- The raking-light close-ups are where scratches, print lines and dents show. A thin line that has not removed colour is a Scratch; a cloudy buffed patch that still has colour is Scuffing.
+- If glare hides part of a surface, put that image in photoQuality and do not guess about marks underneath it.
 - Say which image each imperfection is in, by its number below.
 
 IMAGES
