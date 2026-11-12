@@ -27,6 +27,8 @@ function withCopy(mutate) {
     "scripts",
     "licensing",
     "pkmndb",
+    // The shared conditioning rulebook is validated too, so the copy needs it.
+    "conditioning",
     ...index.apps.map((app) => app.id),
   ];
   for (const name of roots) cpSync(join(repoRoot, name), join(dir, name), { recursive: true });
@@ -130,6 +132,8 @@ function runCase(testCase) {
     "scripts",
     "licensing",
     "pkmndb",
+    // The shared conditioning rulebook is validated too, so the copy needs it.
+    "conditioning",
     ...index.apps.map((app) => app.id),
   ];
   for (const name of roots) cpSync(join(repoRoot, name), join(dir, name), { recursive: true });
