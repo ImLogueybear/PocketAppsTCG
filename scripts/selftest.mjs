@@ -17,33 +17,6 @@ import { fileURLToPath } from "node:url";
 
 const repoRoot = fileURLToPath(new URL("..", import.meta.url));
 
-function withCopy(mutate) {
-  const dir = mkdtempSync(join(tmpdir(), "pocketapps-selftest-"));
-  const index = JSON.parse(readFileSync(join(repoRoot, "index.json"), "utf8"));
-  const roots = [
-    "index.json",
-    "policy.json",
-    "schemas",
-    "scripts",
-    "licensing",
-    "pkmndb",
-    ...index.apps.map((app) => app.id),
-  ];
-  for (const name of roots) cpSync(join(repoRoot, name), join(dir, name), { recursive: true });
-  mutate(dir);
-  try {
-    const output = execFileSync(process.execPath, [join(dir, "scripts", "validate.mjs"), "--offline"], {
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "pipe"],
-    });
-    return { ok: true, output };
-  } catch (error) {
-    return { ok: false, output: `${error.stdout ?? ""}${error.stderr ?? ""}` };
-  } finally {
-    rmSync(dir, { recursive: true, force: true });
-  }
-}
-
 function editManifest(dir, app, edit) {
   const path = join(dir, app, "updates.json");
   const manifest = JSON.parse(readFileSync(path, "utf8"));
@@ -130,6 +103,9 @@ function runCase(testCase) {
     "scripts",
     "licensing",
     "pkmndb",
+    // validate.mjs proves the shared rulebook matches the apps, so the copy has
+    // to include the rulebook's source or every case fails on "missing source".
+    "conditioning",
     ...index.apps.map((app) => app.id),
   ];
   for (const name of roots) cpSync(join(repoRoot, name), join(dir, name), { recursive: true });
