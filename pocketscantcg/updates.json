@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "appId": "pocketscantcg",
-  "version": "0.2.0",
-  "build": 3,
-  "tag": "v0.2.0",
-  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketscantcg/v0.2.0/PocketScanTCG-0.2.0-debug.apk",
-  "sha256": "49c2b772d893e3c3e7a33c098820aaeb8a10c47e3d97b2f33fa45cedf81e64f0",
-  "size": 71488533,
-  "notes": "Adds a calibration-lab contribution export panel that packages rosette, light, and edge captures into an intake-ready ZIP for local sharing. Rewrites rosette analysis to detrend illumination, detect screen pitch by autocorrelation, and return inconclusive when the capture is too smooth to assess. Raw-card automated readings remain experimental until the physical calibration study is complete.",
-  "releaseUrl": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.2.0",
-  "publishedAt": "2026-10-29T03:58:12.442Z"
+  "version": "0.3.0",
+  "build": 7,
+  "tag": "v0.3.0",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketscantcg/v0.3.0/PocketScanTCG-0.3.0-debug.apk",
+  "sha256": "48b3ed45d44e58e143fc1777546713e14869c930be2d2b6049f386b6d00c961c",
+  "size": 71519069,
+  "notes": "Condition estimates now use the shared TCGplayer rulebook with an evidence-based reliability score, a full-screen mark explorer, and a review step for including, correcting or adding marks before the tally is recomputed.\n\nDebug build of the PocketScanTCG Android app (debug-signed). Sideload for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.3.0",
+  "publishedAt": "2026-11-15T23:48:16.533Z"
 }

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "appId": "pocketvaulttcg",
+  "version": "0.36.0",
+  "build": 95,
+  "tag": "v0.36.0",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvaulttcg/v0.36.0/PocketVaultTCG-0.36.0-debug.apk",
+  "sha256": "64b3599dfde0fb69272010e79118a4f33ad4668c7f5bbd6f5ffba40fdebf3b35",
+  "size": 8226371,
+  "notes": "Condition estimates now carry an evidence-based reliability score: photo detail, sharpness, glare, measurement agreement, coverage and distance to a grade boundary, computed by the shared rulebook instead of trusting the model's self-report. The Worker reports observations only; the app measures each mark and applies the TCGplayer rubric.\n\nConnectivity failures now say the phone is offline instead of naming a Java exception.\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.36.0",
+  "publishedAt": "2026-11-15T23:48:16.496Z"
+}
