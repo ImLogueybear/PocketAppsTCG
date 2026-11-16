@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "appId": "pocketscantcg",
-  "version": "0.3.0",
-  "build": 7,
-  "tag": "v0.3.0",
-  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketscantcg/v0.3.0/PocketScanTCG-0.3.0-debug.apk",
-  "sha256": "48b3ed45d44e58e143fc1777546713e14869c930be2d2b6049f386b6d00c961c",
-  "size": 71519069,
-  "notes": "Condition estimates now use the shared TCGplayer rulebook with an evidence-based reliability score, a full-screen mark explorer, and a review step for including, correcting or adding marks before the tally is recomputed.\n\nDebug build of the PocketScanTCG Android app (debug-signed). Sideload for testing.",
-  "releaseUrl": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.3.0",
-  "publishedAt": "2026-11-15T23:48:16.533Z"
+  "version": "0.4.0",
+  "build": 8,
+  "tag": "v0.4.0",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketscantcg/v0.4.0/PocketScanTCG-0.4.0-debug.apk",
+  "sha256": "43a8cf4ab80ae0a15ce169af8b028e51152a82524ce264921fd25e0e339a71bf",
+  "size": 50108314,
+  "notes": "PocketScanTCG now focuses on card identification and condition/grade estimation.\n\n- Removed the counterfeit-screening and graded-slab flows, the raw-card analysis tests (rosette, print texture, light transmission, edge/core, dimensions, weight and visual hand-feel), the calibration lab and its contribution panel, and the screening band/disposition model.\n- The upgrade drops saved screening and slab records from local storage; saved condition checks are kept.\n- Home, History, Guide and Settings now cover only Identify and Condition.\n- Removed the slab barcode scanner and its Android activity, and dropped the unused raw capture modes from the native guide overlay.\n\nDebug build of the PocketScanTCG Android app (debug-signed). Sideload for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.4.0",
+  "publishedAt": "2026-11-16T01:03:25.016Z"
 }
