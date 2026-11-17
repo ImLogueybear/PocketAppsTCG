@@ -109,13 +109,14 @@ status but must not block core features while enforcement is advisory. See
   as evidence of value.
 - **AI scan identification:** DeepSeek vision, fallback only (never the primary
   on-device matcher).
-- **Condition estimates:** the shared `conditioning-worker` (DeepSeek vision)
-  reports observations only. Each app measures the boxes against the card and
-  applies `conditioning/rubric.ts` itself, so the condition is never the model's
-  opinion. App reliability is evidence-based (`confidenceFromTally`), and a model
-  change must first win on the labelled cases in `conditioning-eval/`. A
-  condition estimate is not a professional grade and is not an authenticity
-  result.
+- **Condition estimates:** the shared `conditioning-worker` (DeepSeek vision;
+  `POST /v1/grade`, `GET /v1/rubric`, and the scan fallback's `POST /v1/identify`
+  on the same deployment) reports observations only. Each app measures the boxes
+  against the card and applies `conditioning/rubric.ts` itself, so the condition
+  is never the model's opinion. App reliability is evidence-based
+  (`confidenceFromTally`), and a model change must first win on the labelled
+  cases in `conditioning-eval/`. A condition estimate is not a professional
+  grade and is not an authenticity result.
 
 Applications may keep local overrides for keys and offline fallbacks, but new
 integrations should follow this policy.

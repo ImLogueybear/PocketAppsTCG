@@ -7,6 +7,8 @@
  *
  *   POST /v1/grade  { card, images: [{ label, dataUrl }], rubricVersion }
  *                 -> { rubricVersion, model, observations, notes, usage, tally }
+ *   POST /v1/identify { image: dataUrl } | { images: [{ label, dataUrl }] }
+ *                 -> { name, set, number, confidence, provider, model, usage }
  *   GET  /v1/rubric
  *                 -> { rubricVersion, rules }
  *
@@ -263,11 +265,12 @@ async function callProvider(
   systemPrompt: string,
   images: GradeImage[],
   options: { thinking: boolean; maxTokens: number },
+  userPrompt = "Report the imperfections you can see on this card. Reply with JSON only.",
 ): Promise<DeepSeekAttempt> {
   const content: unknown[] = [
     {
       type: "text",
-      text: "Report the imperfections you can see on this card. Reply with JSON only.",
+      text: userPrompt,
     },
   ];
   for (const image of images) {
@@ -373,6 +376,213 @@ async function askModel(
   }
 
   throw lastError instanceof Error ? lastError : new Error("The grading model could not be used");
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Identification
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Vision identification for the scan fallback. The app matches artwork
+ * on-device first and only asks this route when it is not confident (foil,
+ * full-art or textured cards). It returns the printed text so the app can map
+ * it onto its own catalogue; the Worker never owns the catalogue.
+ */
+const IDENTIFY_PROMPT = `You identify a single Pokémon trading card from a photo. Read the text printed on the card itself; do not guess from the artwork alone.
+
+Reply with ONLY a JSON object, no prose:
+{"name": string, "set": string, "number": string, "confidence": number}
+
+- name: the exact printed name, keeping suffixes exactly as printed, e.g. "Mew ex", "Charizard VMAX", "Regirock ☆".
+- set: the set code or abbreviation printed on the card if visible (e.g. "SVP", "EN", "SWSH"), else the set name if you are certain.
+- number: the collector number exactly as printed (e.g. "053", "53/75", "SVP 053").
+- confidence: 0 to 1 for the whole identification.
+
+If any field is not legible, omit it rather than inventing it.`;
+
+interface IdentifyAnswer {
+  name?: unknown;
+  set?: unknown;
+  number?: unknown;
+  confidence?: unknown;
+}
+
+function normaliseIdentify(
+  answer: IdentifyAnswer,
+): { name: string; set: string; number: string; confidence: number } | null {
+  const name = typeof answer.name === "string" ? answer.name.trim() : "";
+  const set = typeof answer.set === "string" ? answer.set.trim() : "";
+  const number = typeof answer.number === "string" ? answer.number.trim() : "";
+  if (!name && !number) return null;
+  const raw = typeof answer.confidence === "number" ? answer.confidence : 0.6;
+  return {
+    name,
+    set,
+    number,
+    confidence: Math.max(0, Math.min(1, Number.isFinite(raw) ? raw : 0.6)),
+  };
+}
+
+/**
+ * Ask the model to read one card. Identification is a much smaller answer than
+ * grading, so the token plans are smaller; the retry shape matches `askModel`
+ * because DeepSeek's JSON mode can still return a blank when it truncates.
+ */
+async function askIdentify(
+  provider: Provider,
+  apiKey: string,
+  model: string,
+  image: GradeImage,
+): Promise<{
+  answer: IdentifyAnswer;
+  attempts: number;
+  usage: { promptTokens: number; completionTokens: number };
+}> {
+  const plans = [
+    { thinking: false, maxTokens: 400 },
+    { thinking: true, maxTokens: 1200 },
+  ];
+  let promptTokens = 0;
+  let completionTokens = 0;
+  let lastError: unknown;
+
+  for (let index = 0; index < plans.length; index += 1) {
+    const plan = plans[index];
+    let attempt: DeepSeekAttempt;
+    try {
+      attempt = await callProvider(
+        provider,
+        apiKey,
+        model,
+        IDENTIFY_PROMPT,
+        [image],
+        plan,
+        "Read the printed text on this card and reply with JSON only.",
+      );
+    } catch (error) {
+      lastError = error;
+      continue;
+    }
+    promptTokens += attempt.promptTokens;
+    completionTokens += attempt.completionTokens;
+
+    const trimmed = attempt.content.trim();
+    if (!trimmed) {
+      lastError = new Error(`${provider.id} returned an empty answer`);
+      continue;
+    }
+    if (attempt.finishReason === "length") {
+      lastError = new Error(`${provider.id} truncated the answer`);
+      continue;
+    }
+
+    try {
+      const parsed = JSON.parse(trimmed) as IdentifyAnswer;
+      if (!parsed || typeof parsed !== "object") throw new Error("not an object");
+      return {
+        answer: parsed,
+        attempts: index + 1,
+        usage: { promptTokens, completionTokens },
+      };
+    } catch {
+      lastError = new Error(`${provider.id} returned something that is not JSON`);
+    }
+  }
+
+  throw lastError instanceof Error ? lastError : new Error("The identification model could not be used");
+}
+
+function identifyImage(payload: { image?: unknown; images?: unknown }): GradeImage | null {
+  if (typeof payload.image === "string" && payload.image.startsWith("data:image/")) {
+    return { label: "card", dataUrl: payload.image };
+  }
+  if (Array.isArray(payload.images)) {
+    const first = payload.images.find(
+      (image) => typeof image?.dataUrl === "string" && image.dataUrl.startsWith("data:image/"),
+    );
+    if (first) {
+      return {
+        label: typeof first.label === "string" ? first.label : "card",
+        dataUrl: first.dataUrl,
+      };
+    }
+  }
+  return null;
+}
+
+async function handleIdentify(request: Request, env: Env): Promise<Response> {
+  const ip = request.headers.get("cf-connecting-ip") ?? "unknown";
+  if (!allowRequest(ip)) {
+    return json({ error: "Too many requests. Try again shortly." }, 429);
+  }
+
+  const declaredLength = Number(request.headers.get("content-length") ?? "0");
+  if (declaredLength && declaredLength > MAX_BODY_BYTES) {
+    return json({ error: "The request is too large." }, 413);
+  }
+
+  let payload: { image?: unknown; images?: unknown };
+  try {
+    payload = (await request.json()) as typeof payload;
+  } catch {
+    return json({ error: "The request body is not valid JSON." }, 400);
+  }
+
+  const image = identifyImage(payload);
+  if (!image) return json({ error: "No image was supplied." }, 400);
+
+  const provider = providerFor(env);
+  const apiKey =
+    provider.keySecret === "OLLAMA_API_KEY" ? env.OLLAMA_API_KEY : env.DEEPSEEK_KEY;
+  if (!apiKey) return json({ error: "The identification service is not configured." }, 500);
+
+  const model = env.CONDITION_MODEL?.trim() || provider.defaultModel;
+
+  let result: {
+    answer: IdentifyAnswer;
+    attempts: number;
+    usage: { promptTokens: number; completionTokens: number };
+  };
+  try {
+    result = await askIdentify(provider, apiKey, model, image);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "The identification model failed.";
+    console.log(
+      JSON.stringify({
+        event: "identify_failed",
+        provider: provider.id,
+        model,
+        message,
+      }),
+    );
+    return json({ error: message }, 502);
+  }
+
+  const identified = normaliseIdentify(result.answer);
+  if (!identified) {
+    return json({ error: "The model could not read the card." }, 422);
+  }
+
+  console.log(
+    JSON.stringify({
+      event: "identify",
+      provider: provider.id,
+      model,
+      hasName: Boolean(identified.name),
+      hasNumber: Boolean(identified.number),
+      confidence: identified.confidence,
+      attempts: result.attempts,
+      promptTokens: result.usage.promptTokens,
+      completionTokens: result.usage.completionTokens,
+    }),
+  );
+
+  return json({
+    ...identified,
+    provider: provider.id,
+    model,
+    usage: result.usage,
+  });
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -513,6 +723,9 @@ export default {
     }
     if (request.method === "POST" && url.pathname === "/v1/grade") {
       return handleGrade(request, env);
+    }
+    if (request.method === "POST" && url.pathname === "/v1/identify") {
+      return handleIdentify(request, env);
     }
     return json({ error: "Not found" }, 404);
   },
