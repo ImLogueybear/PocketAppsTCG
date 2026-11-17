@@ -21,6 +21,12 @@ CONDITION_PROVIDER = "deepseek"
 
 # Override the model for the chosen provider. Leave unset to use the provider's
 # default. DeepSeek: "deepseek-flash" (the only DeepSeek model with vision).
-# Ollama: "gemma4:31b", "muse-spark-open", "kimi-k3", "mistral-large-4",
-# "mimo-v2.6-pro" or "deepseek-v4.1-flash" — all of which do vision.
+# Ollama vision models tested for PocketScanTCG (five-card identification check):
+#   gemma4:cloud     fastest/cheapest, 5/5 name + number
+#   glm-5.3-flash    5/5 name + number, close second, strong document vision
+#   mimo-v2.6-pro    5/5 name, 3/5 number, fast and mid-priced
+#   mistral-large-4  5/5 name, 4/5 number, slowest; 1.6B vision encoder, the
+#                    condition-grading candidate
+# Gemma 4 wraps its JSON in a <|channel>thought ... <channel|> block; the Worker
+# strips it in parseJsonObject before parsing.
 # CONDITION_MODEL = "deepseek-flash"

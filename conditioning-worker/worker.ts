@@ -317,6 +317,26 @@ async function callProvider(
 }
 
 /**
+ * Parse a model's JSON answer. Gemma 4 wraps its output in
+ * `<|channel>thought ... <channel|>` even when thinking is disabled, and some
+ * providers fence JSON in a code block; both would fail a bare JSON.parse.
+ */
+function parseJsonObject<T>(raw: string): T {
+  let text = raw.trim();
+  text = text.replace(/<\|channel\|?>[\s\S]*?<channel\|>/g, "").trim();
+  const fenced = text.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fenced) text = fenced[1].trim();
+  try {
+    return JSON.parse(text) as T;
+  } catch {
+    const start = text.indexOf("{");
+    const end = text.lastIndexOf("}");
+    if (start >= 0 && end > start) return JSON.parse(text.slice(start, end + 1)) as T;
+    throw new Error("not JSON");
+  }
+}
+
+/**
  * Call the model, retrying when the answer is unusable.
  *
  * DeepSeek's JSON mode replaces output it cannot parse with spaces, so a blank
@@ -363,7 +383,7 @@ async function askModel(
     }
 
     try {
-      const parsed = JSON.parse(trimmed) as ModelAnswer;
+      const parsed = parseJsonObject<ModelAnswer>(trimmed);
       if (!parsed || typeof parsed !== "object") throw new Error("not an object");
       return {
         answer: parsed,
@@ -477,7 +497,7 @@ async function askIdentify(
     }
 
     try {
-      const parsed = JSON.parse(trimmed) as IdentifyAnswer;
+      const parsed = parseJsonObject<IdentifyAnswer>(trimmed);
       if (!parsed || typeof parsed !== "object") throw new Error("not an object");
       return {
         answer: parsed,
