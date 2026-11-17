@@ -64,6 +64,7 @@ when they drift.
 | `OLLAMA_API_KEY` | for Ollama | The Ollama Cloud API key. Never ships in an app. |
 | `CONDITION_PROVIDER` | no | `"deepseek"` (default) or `"ollama"`. Set in `wrangler.toml` under `[vars]`. |
 | `CONDITION_MODEL` | no | Vision model id. Defaults per provider. |
+| `CONDITION_BENCHMARK_MODELS` | no | Comma-separated `provider:model` pairs the in-app benchmark lab may request. Currently `deepseek:deepseek-flash`. |
 | `CONDITION_ALLOW_CALLER_KEY` | no | Set to `"1"` to let a caller pass its own key in `x-api-key` and override the provider and model. Development only. |
 
 Set a secret with:
@@ -89,7 +90,8 @@ endpoint, no Ollama install needed. Thinking is requested with `reasoning_effort
 (`"none"` turns it off). Images are encoded as a bare data-URL string, which is
 what Ollama's own documentation shows.
 
-Vision models available on Ollama Cloud, all of which also support thinking:
+Ollama vision models available for local evaluation, all of which also support
+thinking (the in-app benchmark lab currently allows only DeepSeek Flash):
 
 | Model | Input / output per 1M tokens | Notes |
 | --- | --- | --- |
@@ -107,6 +109,9 @@ A grade is roughly 17k input tokens and 1â€“3k output tokens, so about **$0.003â
 per card either way.
 
 ### Switching provider or model
+
+The apps use DeepSeek. These overrides are for local evaluation; do not deploy
+Ollama as the shared production provider without changing the app allowlist.
 
 ```bash
 # Ollama, default model

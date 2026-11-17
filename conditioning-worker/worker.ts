@@ -38,7 +38,7 @@ interface Env {
   CONDITION_ALLOW_CALLER_KEY?: string;
   /**
    * Comma-separated `provider:model` pairs the benchmark lab may request, e.g.
-   * "deepseek:deepseek-flash,ollama:gemma4:cloud". Any other override is rejected.
+   * "deepseek:deepseek-flash". Any other override is rejected.
    */
   CONDITION_BENCHMARK_MODELS?: string;
 }
