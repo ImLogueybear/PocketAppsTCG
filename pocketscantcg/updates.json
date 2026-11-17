@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "appId": "pocketscantcg",
-  "version": "0.5.0",
-  "build": 9,
-  "tag": "v0.5.0",
-  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketscantcg/v0.5.0/PocketScanTCG-0.5.0-debug.apk",
-  "sha256": "386789d06a5039f5c1fba5e11dc8ae37bf8b585ed7ab10f1fa694e5c800182e1",
-  "size": 50490513,
-  "notes": "PocketScanTCG now identifies cards from a photo as well as by search.\n\n- Scan the card front to match its artwork entirely on-device against the PKMNDB-hosted reference index, with ranked candidates and confidence.\n- The APK reads the printed collector number from the warped card to separate printings that share the same artwork.\n- The first scan downloads the ~70 MB index (Chinese shards skipped); later scans are offline.\n- Optional AI identification fallback for foil/full-art cards, off by default and only used when the offline match is unsure.\n- Settings: prefer Japanese printings, prepare/clear the scan index, AI identification toggle.\n- Re-synced the PKMNDB catalogue snapshot (22,047 EN + 27,961 JA cards).\n\nDebug build of the PocketScanTCG Android app (debug-signed). Sideload for testing.",
-  "releaseUrl": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.5.0",
-  "publishedAt": "2026-11-17T00:02:57.523Z"
+  "version": "0.6.0",
+  "build": 10,
+  "tag": "v0.6.0",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketscantcg/v0.6.0/PocketScanTCG-0.6.0-debug.apk",
+  "sha256": "0d145b49a213bbd50be4d73bec88b7dae62b974cc0e5c7a263a8f828bed05fd6",
+  "size": 50496749,
+  "notes": "PocketScanTCG 0.6.0 adds a hidden benchmark lab for choosing a condition model on real shots.\n\n- Settings → Benchmark lab enables a Compare models action on the condition checker.\n- The same 23 prepared crops go to DeepSeek Flash, Gemma 4, Mistral Large 4 and MiMo V2.6 Pro in turn; every answer is measured and graded by the app's rulebook.\n- The run stores the three originals, the exact crops sent, and per-model observations, condition, points, confidence, latency and token usage, with ZIP export and delete controls.\n- Normal condition checks remain on DeepSeek; the Worker accepts only its allowlisted model pairs.\n\nDebug build of the PocketScanTCG Android app (debug-signed). Sideload for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.6.0",
+  "publishedAt": "2026-11-17T00:40:04.912Z"
 }

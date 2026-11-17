@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "appId": "pocketscantcg",
+  "version": "0.6.0",
+  "build": 10,
+  "tag": "v0.6.0",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketscantcg/v0.6.0/PocketScanTCG-0.6.0-debug.apk",
+  "sha256": "0d145b49a213bbd50be4d73bec88b7dae62b974cc0e5c7a263a8f828bed05fd6",
+  "size": 50496749,
+  "notes": "PocketScanTCG 0.6.0 adds a hidden benchmark lab for choosing a condition model on real shots.\n\n- Settings → Benchmark lab enables a Compare models action on the condition checker.\n- The same 23 prepared crops go to DeepSeek Flash, Gemma 4, Mistral Large 4 and MiMo V2.6 Pro in turn; every answer is measured and graded by the app's rulebook.\n- The run stores the three originals, the exact crops sent, and per-model observations, condition, points, confidence, latency and token usage, with ZIP export and delete controls.\n- Normal condition checks remain on DeepSeek; the Worker accepts only its allowlisted model pairs.\n\nDebug build of the PocketScanTCG Android app (debug-signed). Sideload for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.6.0",
+  "publishedAt": "2026-11-17T00:40:04.912Z"
+}
