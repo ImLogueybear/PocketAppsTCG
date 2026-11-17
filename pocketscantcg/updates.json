@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "appId": "pocketscantcg",
-  "version": "0.6.1",
-  "build": 11,
-  "tag": "v0.6.1",
-  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketscantcg/v0.6.1/PocketScanTCG-0.6.1-debug.apk",
-  "sha256": "e54b64198a974274764d65ce714325e815af9b405a0ca348e10e5168ea8891aa",
-  "size": 50497105,
-  "notes": "PocketScanTCG 0.6.1 fixes the condition photo viewer.\n\n- The viewer is inline instead of a full-screen overlay, so the page header, bottom nav and front/back/surface tabs stay reachable; zoom and pan still work inside the image viewport.\n- Marks are filtered to the photo being viewed: front damage is drawn only on the front, back damage only on the back, and the angled surface photo carries no boxes.\n- Jumping to a mark from the review list now opens the photo that mark belongs to.\n- New Solid/Faint/Off control for mark boxes, remembered between sessions.\n\nDebug build of the PocketScanTCG Android app (debug-signed). Sideload for testing.",
-  "releaseUrl": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.6.1",
-  "publishedAt": "2026-11-17T00:59:38.599Z"
+  "version": "0.6.2",
+  "build": 12,
+  "tag": "v0.6.2",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketscantcg/v0.6.2/PocketScanTCG-0.6.2-debug.apk",
+  "sha256": "f661c8e7e9b49f36b835a1ae314986a621054be01869b9fdf34f4aa715b1f68d",
+  "size": 50497121,
+  "notes": "PocketScanTCG 0.6.2 returns the benchmark lab to DeepSeek only.\n\n- Gemma 4, Mistral Large 4 and MiMo V2.6 Pro are removed from the benchmark model list; DeepSeek Flash is the only remaining target.\n- A saved benchmark selection that pointed only at removed models now falls back to DeepSeek Flash. Existing benchmark runs that contain the old models remain readable.\n- The shared conditioning Worker allowlist is narrowed to `deepseek:deepseek-flash`.\n- Normal condition grading was already on DeepSeek and is unchanged.\n\nDebug build of the PocketScanTCG Android app (debug-signed). Sideload for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.6.2",
+  "publishedAt": "2026-11-17T02:17:22.532Z"
 }
