@@ -36,6 +36,11 @@ interface Env {
   CONDITION_MODEL?: string;
   /** Set to "1" to allow a caller-supplied provider key (development only). */
   CONDITION_ALLOW_CALLER_KEY?: string;
+  /**
+   * Comma-separated `provider:model` pairs the benchmark lab may request, e.g.
+   * "deepseek:deepseek-flash,ollama:gemma4:cloud". Any other override is rejected.
+   */
+  CONDITION_BENCHMARK_MODELS?: string;
 }
 
 const MAX_IMAGES = 24;
@@ -90,6 +95,16 @@ const PROVIDERS: Record<string, Provider> = {
 function providerFor(env: Env): Provider {
   const id = (env.CONDITION_PROVIDER ?? "deepseek").trim().toLowerCase();
   return PROVIDERS[id] ?? PROVIDERS.deepseek;
+}
+
+/** Allowed benchmark overrides, as `provider:model` lower-case keys. */
+function benchmarkAllowlist(env: Env): Set<string> {
+  return new Set(
+    (env.CONDITION_BENCHMARK_MODELS ?? "")
+      .split(",")
+      .map((entry) => entry.trim().toLowerCase())
+      .filter(Boolean)
+  );
 }
 
 /** A simple per-IP token bucket so one client cannot drain the key. */
@@ -639,15 +654,26 @@ async function handleGrade(request: Request, env: Env): Promise<Response> {
 
   const callerKey = request.headers.get("x-api-key")?.trim();
   const devMode = env.CONDITION_ALLOW_CALLER_KEY === "1";
+  const requestedProvider = payload.provider?.trim().toLowerCase();
+  const requestedModel = payload.model?.trim();
+  const benchmarkKey =
+    requestedProvider && requestedModel
+      ? `${requestedProvider}:${requestedModel}`.toLowerCase()
+      : "";
+  const benchmarkAllowed = benchmarkKey ? benchmarkAllowlist(env).has(benchmarkKey) : false;
 
-  // In development the caller may pick the provider and model, so a different
-  // vision model can be tried against the evaluation set without a redeploy.
-  // The override only works with the development flag set.
-  const requestedProvider = devMode && payload.provider ? payload.provider.trim().toLowerCase() : "";
-  const provider = requestedProvider
-    ? (PROVIDERS[requestedProvider] ?? providerFor(env))
-    : providerFor(env);
+  // Development may pick any provider/model with a caller key. The benchmark lab
+  // may pick only the pairs in CONDITION_BENCHMARK_MODELS, so the shared key
+  // cannot be pointed at an arbitrary model.
+  const devProvider = devMode && requestedProvider ? PROVIDERS[requestedProvider] : undefined;
+  const benchmarkProvider =
+    benchmarkAllowed && requestedProvider ? PROVIDERS[requestedProvider] : undefined;
+  const overrideProvider = devProvider ?? benchmarkProvider;
+  if ((requestedProvider || requestedModel) && !overrideProvider) {
+    return json({ error: "That model is not enabled for benchmarking." }, 400);
+  }
 
+  const provider = overrideProvider ?? providerFor(env);
   const apiKey =
     callerKey && devMode
       ? callerKey
@@ -659,7 +685,7 @@ async function handleGrade(request: Request, env: Env): Promise<Response> {
   }
 
   const model =
-    (devMode && payload.model?.trim()) || env.CONDITION_MODEL?.trim() || provider.defaultModel;
+    (overrideProvider && requestedModel) || env.CONDITION_MODEL?.trim() || provider.defaultModel;
   const prompt = buildConditioningPrompt({
     card: payload.card,
     photoLabels: images.map((image) => image.label),

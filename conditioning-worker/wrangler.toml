@@ -19,6 +19,10 @@ enabled = true
 # vision and reasoning control.
 CONDITION_PROVIDER = "deepseek"
 
+# The benchmark lab may override the provider/model, but only for these pairs.
+# Keep this list in sync with PocketScanTCG's src/lib/benchmarkTargets.ts.
+CONDITION_BENCHMARK_MODELS = "deepseek:deepseek-flash,ollama:gemma4:cloud,ollama:mistral-large-4,ollama:mimo-v2.6-pro"
+
 # Override the model for the chosen provider. Leave unset to use the provider's
 # default. DeepSeek: "deepseek-flash" (the only DeepSeek model with vision).
 # Ollama vision models tested for PocketScanTCG (five-card identification check):
