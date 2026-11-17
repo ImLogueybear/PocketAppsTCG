@@ -5,4 +5,5 @@ Thumbs.db
 
 # Build output for the shared conditioning worker.
 conditioning-worker/dist/
+conditioning-worker/.wrangler/
 scripts/.cache/
