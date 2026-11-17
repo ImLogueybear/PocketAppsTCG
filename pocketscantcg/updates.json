@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "appId": "pocketscantcg",
-  "version": "0.4.0",
-  "build": 8,
-  "tag": "v0.4.0",
-  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketscantcg/v0.4.0/PocketScanTCG-0.4.0-debug.apk",
-  "sha256": "43a8cf4ab80ae0a15ce169af8b028e51152a82524ce264921fd25e0e339a71bf",
-  "size": 50108314,
-  "notes": "PocketScanTCG now focuses on card identification and condition/grade estimation.\n\n- Removed the counterfeit-screening and graded-slab flows, the raw-card analysis tests (rosette, print texture, light transmission, edge/core, dimensions, weight and visual hand-feel), the calibration lab and its contribution panel, and the screening band/disposition model.\n- The upgrade drops saved screening and slab records from local storage; saved condition checks are kept.\n- Home, History, Guide and Settings now cover only Identify and Condition.\n- Removed the slab barcode scanner and its Android activity, and dropped the unused raw capture modes from the native guide overlay.\n\nDebug build of the PocketScanTCG Android app (debug-signed). Sideload for testing.",
-  "releaseUrl": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.4.0",
-  "publishedAt": "2026-11-16T01:03:25.016Z"
+  "version": "0.5.0",
+  "build": 9,
+  "tag": "v0.5.0",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketscantcg/v0.5.0/PocketScanTCG-0.5.0-debug.apk",
+  "sha256": "386789d06a5039f5c1fba5e11dc8ae37bf8b585ed7ab10f1fa694e5c800182e1",
+  "size": 50490513,
+  "notes": "PocketScanTCG now identifies cards from a photo as well as by search.\n\n- Scan the card front to match its artwork entirely on-device against the PKMNDB-hosted reference index, with ranked candidates and confidence.\n- The APK reads the printed collector number from the warped card to separate printings that share the same artwork.\n- The first scan downloads the ~70 MB index (Chinese shards skipped); later scans are offline.\n- Optional AI identification fallback for foil/full-art cards, off by default and only used when the offline match is unsure.\n- Settings: prefer Japanese printings, prepare/clear the scan index, AI identification toggle.\n- Re-synced the PKMNDB catalogue snapshot (22,047 EN + 27,961 JA cards).\n\nDebug build of the PocketScanTCG Android app (debug-signed). Sideload for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketScanTCG/releases/tag/v0.5.0",
+  "publishedAt": "2026-11-17T00:02:57.523Z"
 }
