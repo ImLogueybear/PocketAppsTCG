@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "appId": "pocketvendortcg",
-  "version": "0.16.0",
-  "build": 109,
-  "tag": "v0.16.0",
-  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.16.0/pocketvendortcg-debug.apk",
-  "sha256": "fc7c1ff36ecacb54898285b215b2aa711761b55675abb84c55fc045e22b3b787",
-  "size": 5125637,
-  "notes": "Counterfeit screening is removed. Scan review is now a compact match list: each matched scan shows a thumbnail, name and set with Details and one pencil, the batch adds NM ×1, and adding from Details removes that scan. Opening a card refreshes a missing or stale market price automatically, with the cached figure visible while it checks.\n\nDebug build of the PocketVendorTCG Android app (debug-signed). Sideload for testing.",
-  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.16.0",
-  "publishedAt": "2026-11-21T02:16:56.407Z"
+  "version": "0.16.1",
+  "build": 110,
+  "tag": "v0.16.1",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.16.1/pocketvendortcg-debug.apk",
+  "sha256": "011ebda9cd8701a9c0514e92d75c0f00b807ddd56d532940aaa1573da89f00e8",
+  "size": 5126622,
+  "notes": "Debug build of the PocketVendorTCG Android app (debug-signed). Sideload for testing. Fixes wrong-card prices and TCGplayer product links.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.16.1",
+  "publishedAt": "2026-11-21T17:41:34.441Z"
 }
