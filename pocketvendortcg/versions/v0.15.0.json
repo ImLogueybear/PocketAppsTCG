@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "appId": "pocketvendortcg",
+  "version": "0.15.0",
+  "build": 108,
+  "tag": "v0.15.0",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.15.0/pocketvendortcg-debug.apk",
+  "sha256": "cb89811e17101bea8ca4f732d49d54ff6ae025c8de8d773730a054d2200fc00f",
+  "size": 5137886,
+  "notes": "Print selection replaces event stamps: every card surface now offers only the prints the card was actually made in (Normal / Holo / Reverse Holo), plus a 1st Edition checkbox where one exists. Staff, Prerelease, League and Pokemon Center are no longer selectable variants; existing lines are migrated to notes so they price from their real printing again, and a stale stamp price can no longer become a card's headline value.\n\nDebug build of the PocketVendorTCG Android app (debug-signed). Sideload for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.15.0",
+  "publishedAt": "2026-11-21T01:49:00.658Z"
+}
