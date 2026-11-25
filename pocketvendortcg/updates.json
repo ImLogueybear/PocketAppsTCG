@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "appId": "pocketvendortcg",
-  "version": "0.16.1",
-  "build": 110,
-  "tag": "v0.16.1",
-  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.16.1/pocketvendortcg-debug.apk",
-  "sha256": "011ebda9cd8701a9c0514e92d75c0f00b807ddd56d532940aaa1573da89f00e8",
-  "size": 5126622,
-  "notes": "Debug build of the PocketVendorTCG Android app (debug-signed). Sideload for testing. Fixes wrong-card prices and TCGplayer product links.",
-  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.16.1",
-  "publishedAt": "2026-11-21T17:41:34.441Z"
+  "version": "0.16.2",
+  "build": 111,
+  "tag": "v0.16.2",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvendortcg/v0.16.2/pocketvendortcg-debug.apk",
+  "sha256": "c7902656ed4c7d184278e06b18b8698fd7e16adf270731aac831b3aed152ae9e",
+  "size": 5126722,
+  "notes": "Debug build of the PocketVendorTCG Android app (debug-signed). Sideload for testing.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVendorTCG/releases/tag/v0.16.2",
+  "publishedAt": "2026-11-25T04:55:02.112Z"
 }
