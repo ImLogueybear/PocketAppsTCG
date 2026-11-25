@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "appId": "pocketvaulttcg",
+  "version": "0.36.1",
+  "build": 96,
+  "tag": "v0.36.1",
+  "url": "https://pub-54a82c9e988c459da62f95d0bd9c78d9.r2.dev/apps/pocketvaulttcg/v0.36.1/PocketVaultTCG-0.36.1-debug.apk",
+  "sha256": "05643a23a821697460ffc31de7422896b77854e7cb63566d9a46e475e5e7bbb2",
+  "size": 8227427,
+  "notes": "### Fixed\r\n- **\"Fetch remaining prices\" prices a set again.** The canonical catalogue\r\n  migration renamed card ids, so TCGdex lookups were 404ing for most SV/ME-era\r\n  sets. A single card still worked because it fell back to PkmnPrices, but the\r\n  bulk button only ever asked TCGdex (and only for ten promo sets), so it\r\n  silently found nothing. TCGdex ids are now rebuilt from a set alias plus the\r\n  printed number (`src/data/tcgdexSets.ts`), and a bulk run uses the same\r\n  provider chain as a single card — TCGdex, then PkmnPrices for anything TCGdex\r\n  cannot price. The run now reports what happened instead of looking like a tap\r\n  that did nothing. No scan-index rebuild.\n\n---\n\nDebug build of the PocketVaultTCG Android app (debug-signed). Sideload for testing.\nBuilt locally from eadb84b13f3b5160f9a60660c07acb2fac0ef8f7.",
+  "releaseUrl": "https://github.com/ImLogueybear/PocketVaultTCG/releases/tag/v0.36.1",
+  "publishedAt": "2026-11-25T05:05:13.595Z"
+}
